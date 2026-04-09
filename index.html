@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio de Futuros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --ink: #1a2024;
+      --muted: #6b8a96;
+      --rule: #e3ecef;
+      --rule2: #ccdce2;
+      --accent: #5a8fc2;
+      --teal: #8ec4c0;
+      --teal2: #5f9fa0;
+      --paper: #ffffff;
+      --surface: #f4f8fa;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --nav-h: 52px;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(255, 255, 255, .95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+    }
+
+    .nav-logo {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink)
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0 16px;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      border-left: 1px solid var(--rule);
+      transition: all .2s;
+      position: relative;
+    }
+
+    .nav-links a:last-child {
+      border-right: 1px solid var(--rule)
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: var(--surface)
+    }
+
+    .nav-links a.active {
+      color: var(--ink);
+      font-weight: 600;
+      background: #fff;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent)
+    }
+
+    /* --- LAYOUT --- */
+    main {
+      padding-top: var(--nav-h)
+    }
+
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 2
+    }
+
+    /* subtle blobs — very low opacity on pure white */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none
+    }
+
+    /* --- COVER --- */
+    #cover {
+      padding: 72px 0 64px;
+      background: #fff
+    }
+
+    #cover .b1 {
+      width: 480px;
+      height: 360px;
+      top: -100px;
+      right: -80px;
+      background: var(--accent);
+      opacity: .07
+    }
+
+    #cover .b2 {
+      width: 360px;
+      height: 280px;
+      bottom: -60px;
+      left: -80px;
+      background: var(--teal);
+      opacity: .08
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start
+    }
+
+    .cover-eyebrow {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px
+    }
+
+    .cover-title {
+      font-size: clamp(38px, 6vw, 72px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      margin-bottom: 24px
+    }
+
+    .cover-title span {
+      color: var(--accent)
+    }
+
+    .cover-sub {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 28px
+    }
+
+    .cover-fields {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap
+    }
+
+    .pill {
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--rule2);
+      padding: 4px 10px
+    }
+
+    .meta-block {
+      background: var(--surface);
+      border: 1px solid var(--rule)
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .meta-row:last-child {
+      border-bottom: none
+    }
+
+    .meta-label {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .meta-val {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink);
+      text-align: right;
+      max-width: 200px
+    }
+
+    /* --- SEC HEADER --- */
+    .sec-header {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 32px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .sec-num {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 28px
+    }
+
+    .sec-title {
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 300;
+      letter-spacing: -.02em;
+      line-height: 1.1
+    }
+
+    /* --- TWO COL --- */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px
+    }
+
+    .col-label {
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px
+    }
+
+    .col-body {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--muted)
+    }
+
+    .col-body b {
+      font-weight: 400;
+      color: var(--ink)
+    }
+
+    /* --- PULL QUOTE --- */
+    .pull {
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--ink);
+      padding: 32px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin: 40px 0;
+      max-width: 680px;
+      letter-spacing: -.01em
+    }
+
+    /* --- THREE COL --- */
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule2);
+      border: 1px solid var(--rule2)
+    }
+
+    .c-cell {
+      background: var(--paper);
+      padding: 22px 18px
+    }
+
+    .c-cell.dark {
+      background: var(--accent)
+    }
+
+    .c-cell.dark .c-label {
+      color: rgba(255, 255, 255, .4)
+    }
+
+    .c-cell.dark .c-name {
+      color: rgba(255, 255, 255, .9)
+    }
+
+    .c-cell.dark .c-body {
+      color: rgba(255, 255, 255, .5)
+    }
+
+    .c-label {
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px
+    }
+
+    .c-name {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 9px;
+      letter-spacing: -.01em
+    }
+
+    .c-body {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--muted)
+    }
+
+    /* --- FORMATO / CONE DIAGRAM --- */
+    .formato-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center
+    }
+
+    .cone-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.5;
+      margin-bottom: 32px
+    }
+
+    .cone-caption {
+      font-size: 10px;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: .02em;
+      margin-top: 12px;
+      border-top: 1px solid var(--rule);
+      padding-top: 8px;
+      display: inline-block
+    }
+
+    .cone-wrap svg {
+      width: 100%;
+      height: 100%
+    }
+
+    .steps-side {
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .step-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .step-row:first-child {
+      border-top: 1px solid var(--rule)
+    }
+
+    .step-n {
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      min-width: 22px
+    }
+
+    .step-name {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 2px
+    }
+
+    .step-desc {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.55
+    }
+
+    /* --- ROADMAP --- */
+    .rm-wrap {
+      overflow-x: auto;
+      margin-top: 32px
+    }
+
+    table.rm {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      min-width: 600px
+    }
+
+    table.rm th,
+    table.rm td {
+      padding: 9px 11px;
+      text-align: left;
+      border: 1px solid var(--rule)
+    }
+
+    table.rm thead.yr1 th {
+      background: var(--accent);
+      color: rgba(255, 255, 255, .85);
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    table.rm thead.yr2 th {
+      background: #0e2a60;
+      color: rgba(255, 255, 255, .8);
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    table.rm thead.qr th {
+      background: var(--surface);
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase
+    }
+
+    .rm-track {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap
+    }
+
+    .rmb {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 8.5px;
+      font-weight: 300;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin: 2px 0;
+      line-height: 1.4
+    }
+
+    .rmb.blue {
+      background: #e3f0f5;
+      color: var(--accent)
+    }
+
+    .rmb.teal {
+      background: #e6f2f1;
+      color: var(--teal2)
+    }
+
+    .rmb.dark {
+      background: var(--accent);
+      color: #fff
+    }
+
+    .rmb.star {
+      background: var(--teal2);
+      color: #fff;
+      font-weight: 400
+    }
+
+    .rmb.soft {
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--rule)
+    }
+
+    table.rm tr:nth-child(even) td {
+      background: rgba(0, 0, 0, .012)
+    }
+
+    /* --- FASES --- */
+    .fases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule2);
+      border: 1px solid var(--rule2);
+      margin-top: 32px
+    }
+
+    .fase-card {
+      background: var(--paper);
+      padding: 32px 28px
+    }
+
+    .fase-card.wide {
+      grid-column: span 2
+    }
+
+    .fase-num {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal2);
+      margin-bottom: 8px
+    }
+
+    .fase-name {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: -.01em
+    }
+
+    .fase-meta {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: .05em
+    }
+
+    .fase-desc {
+      font-size: 14.5px;
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--muted)
+    }
+
+    .fase-desc b {
+      color: var(--ink);
+      font-weight: 400
+    }
+
+    /* --- SPEAKERS --- */
+    .spk-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule2);
+      border: 1px solid var(--rule2);
+      margin-top: 32px
+    }
+
+    .spk {
+      background: var(--paper);
+      padding: 18px 16px
+    }
+
+    .spk-tag {
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px
+    }
+
+    .spk-name {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 3px;
+      letter-spacing: -.01em
+    }
+
+    .spk-role {
+      font-size: 8.5px;
+      font-weight: 300;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 7px
+    }
+
+    .spk-why {
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--muted)
+    }
+
+    /* --- TEAM --- */
+    .team-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule2);
+      border: 1px solid var(--rule2);
+      margin-top: 32px
+    }
+
+    .team-card {
+      background: var(--paper);
+      padding: 26px 22px
+    }
+
+    .team-init {
+      font-size: 34px;
+      font-weight: 200;
+      color: var(--teal);
+      letter-spacing: -.02em;
+      line-height: 1;
+      margin-bottom: 12px;
+      opacity: .65
+    }
+
+    .team-name {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 4px
+    }
+
+    .team-role {
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    /* --- ALLIES --- */
+    .allies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 20px
+    }
+
+    .ally {
+      background: var(--paper);
+      padding: 15px 14px
+    }
+
+    .ally-name {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 3px
+    }
+
+    .ally-type {
+      font-size: 9.5px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    /* --- SCALE --- */
+    .scale-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule2);
+      border: 1px solid var(--rule2);
+      margin-top: 32px
+    }
+
+    /* --- STEPS LIST --- */
+    .steps-list {
+      margin-top: 20px;
+      border: 1px solid var(--rule)
+    }
+
+    .step-item {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted)
+    }
+
+    .step-item:last-child {
+      border-bottom: none
+    }
+
+    .step-nn {
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      min-width: 18px
+    }
+
+    /* --- COLOPHON --- */
+    #colo {
+      background: #fff;
+      position: relative;
+      overflow: hidden
+    }
+
+    #colo .b3 {
+      width: 500px;
+      height: 360px;
+      top: -80px;
+      right: -100px;
+      background: var(--accent);
+      opacity: .05
+    }
+
+    #colo .b4 {
+      width: 400px;
+      height: 300px;
+      bottom: -80px;
+      left: -80px;
+      background: var(--teal);
+      opacity: .06
+    }
+
+    .colo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end
+    }
+
+    .colo-meta {
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 2.2;
+      color: var(--muted)
+    }
+
+    .colo-big {
+      font-size: clamp(28px, 4.5vw, 52px);
+      font-weight: 200;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      line-height: 1;
+      text-align: right;
+      opacity: .6
+    }
+
+    /* --- RESPONSIVE --- */
+    @media(max-width:680px) {
+
+      .cover-grid,
+      .two-col,
+      .three-col,
+      .formato-layout,
+      .fases-grid,
+      .spk-grid,
+      .team-row,
+      .allies-grid,
+      .scale-grid,
+      .colo-grid {
+        grid-template-columns: 1fr
+      }
+
+      .fase-card.wide {
+        grid-column: span 1
+      }
+
+      nav {
+        padding: 0 16px
+      }
+
+      .nav-links a {
+        padding: 5px 8px;
+        font-size: 9px
+      }
+
+      .container {
+        padding: 0 18px
+      }
+
+      section {
+        padding: 48px 0
+      }
+
+      .cone-wrap {
+        max-width: 340px;
+        margin: 0 auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <span class="nav-logo">Laboratorio de Futuros</span>
+    <div class="nav-links">
+      <a href="#concepto">Concepto</a>
+      <a href="#formato">Formato</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#fases">Fases</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#escala">Escala</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- COVER -->
+    <section id="cover">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="container">
+        <div class="cover-grid">
+          <div>
+            <div class="cover-eyebrow">Propuesta de proyecto · Abril 2026</div>
+            <h1 class="cover-title">Laboratorio<br>de <span>Futuros</span></h1>
+            <p class="cover-sub">Un espacio de convergencia disciplinar donde arte, ciencias de la vida y tecnología se
+              tensionan para diseñar futuros posibles. Dos ediciones anuales temáticas. Comunidad, conocimiento y
+              proyectos con impacto real.</p>
+            <div class="cover-fields">
+              <span class="pill">Arte</span>
+              <span class="pill">Ciencias de la vida</span>
+              <span class="pill">Tecnología</span>
+              <span class="pill">Buenos Aires</span>
+            </div>
+          </div>
+          <div class="meta-block">
+            <div class="meta-row"><span class="meta-label">Inicio</span><span class="meta-val">Q1 2027</span></div>
+            <div class="meta-row"><span class="meta-label">Duración</span><span class="meta-val">2 años · 2
+                ediciones</span></div>
+            <div class="meta-row"><span class="meta-label">Temática Ed.1</span><span class="meta-val">Silver Economy
+                &amp; Lifestyle</span></div>
+            <div class="meta-row"><span class="meta-label">Formato</span><span class="meta-val">Bootcamp temático
+                intensivo</span></div>
+            <div class="meta-row"><span class="meta-label">Participantes</span><span class="meta-val">20–30 por
+                edición</span></div>
+            <div class="meta-row"><span class="meta-label">Coordinación</span><span class="meta-val">Luciana Perrone ·
+                Mariana Fiorillo</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCEPTO -->
+    <section id="concepto">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">El concepto</h2>
+        </div>
+        <div class="pull">
+          "Diseñamos no desde lo que creemos que el mundo es, sino desde la conciencia de que siempre estamos viendo
+          solo una parte."
+        </div>
+        <div class="two-col">
+          <div>
+            <div class="col-label">El contexto</div>
+            <p class="col-body">La inteligencia artificial, la crisis ecológica y la aceleración tecnológica están
+              disolviendo los bordes entre campos que históricamente operaron en paralelo. Las instituciones forman
+              especialistas. Las industrias optimizan dentro de sus marcos. El resultado es una <b>fragmentación del
+                pensamiento</b> en el momento histórico que más demanda lo contrario.</p>
+          </div>
+          <div>
+            <div class="col-label">La apuesta</div>
+            <p class="col-body">La capacidad de síntesis —moverse con rigor entre el laboratorio y el estudio, entre la
+              especulación y la evidencia— es hoy una de las competencias más escasas y más necesarias. Este proyecto
+              propone el espacio donde eso ocurre: de manera rigurosa, sostenida y profunda.</p>
+          </div>
+        </div>
+        <div class="three-col" style="margin-top:32px">
+          <div class="c-cell">
+            <div class="c-label">Campo 01</div>
+            <div class="c-name">El arte</div>
+            <p class="c-body">Un estado de expresión donde la percepción se expande, se vuelve más sensible, menos
+              automática. El lugar donde el ser humano amplía sus formas de interpretar y desear el mundo.</p>
+          </div>
+          <div class="c-cell dark">
+            <div class="c-label">Campo 02</div>
+            <div class="c-name">La tecnología</div>
+            <p class="c-body">Mediación entre formas de vida y formas de percepción. El desafío: acceder, interpretar y
+              compartir percepciones radicalmente distintas a las propias.</p>
+          </div>
+          <div class="c-cell">
+            <div class="c-label">Campo 03</div>
+            <div class="c-name">Ciencias de la vida</div>
+            <p class="c-body">No estudiar la naturaleza como objeto, sino incorporar sus lógicas como marco de diseño.
+              Lo vivo como sistema de referencia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMATO -->
+    <section id="formato">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">El formato</h2>
+        </div>
+        <p class="col-body" style="max-width:580px;margin-bottom:36px">Cada edición del laboratorio se organiza
+          alrededor de una temática central. Una semana intensiva de trabajo colectivo estructurada como un cono de
+          futuros: del presente hacia lo posible, pasando por lo plausible, lo probable y lo preferible.</p>
+
+        <div class="formato-layout">
+          <!-- CONE SVG inspired by Dunne & Raby PPPP -->
+          <div class="cone-wrap">
+            <svg viewBox="0 0 540 380" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <!-- Possible — outermost, lightest -->
+              <polygon points="70,190 420,30 420,350" fill="#e0f2f1" opacity=".7" />
+              <!-- Plausible -->
+              <polygon points="70,190 420,70 420,310" fill="#b2dfdb" opacity=".7" />
+              <!-- Probable -->
+              <polygon points="70,190 420,105 420,275" fill="#80cbc4" opacity=".8" />
+              <!-- Preferable — warm, contrasting -->
+              <polygon points="70,190 310,125 310,185" fill="var(--teal2)" opacity=".9" />
+              <!-- Present dot -->
+              <circle cx="70" cy="190" r="6" fill="var(--ink)" />
+
+              <!-- Labels: Right side (Cone) -->
+              <text x="430" y="36" font-family="DM Sans,system-ui,sans-serif" font-size="13" font-weight="500"
+                fill="var(--teal2)" letter-spacing=".05em" dominant-baseline="middle">POSIBLE</text>
+              <text x="430" y="78" font-family="DM Sans,system-ui,sans-serif" font-size="13" font-weight="500"
+                fill="#4db6ac" letter-spacing=".05em" dominant-baseline="middle">PLAUSIBLE</text>
+              <text x="430" y="112" font-family="DM Sans,system-ui,sans-serif" font-size="13" font-weight="500"
+                fill="#00897b" letter-spacing=".05em" dominant-baseline="middle">PROBABLE</text>
+
+              <!-- Label: Inside Preferable -->
+              <text x="220" y="166" font-family="DM Sans,system-ui,sans-serif" font-size="11" font-weight="500"
+                fill="#fff" letter-spacing=".08em" text-anchor="middle"
+                transform="rotate(-15, 220, 166)">PREFERIBLE</text>
+
+              <!-- Label: Present -->
+              <text x="0" y="190" font-family="DM Sans,system-ui,sans-serif" font-size="12" font-weight="500"
+                fill="var(--ink)" letter-spacing=".05em" dominant-baseline="middle">PRESENTE</text>
+
+
+            </svg>
+            <p class="cone-caption">PPPP. Illustration by Dunne & Raby.</p>
+          </div>
+
+          <!-- STEPS -->
+          <div class="steps-side">
+            <div class="step-row">
+              <div>
+                <div class="step-n">Día 01</div>
+                <div class="step-name">Encuadre y sensibilización</div>
+                <div class="step-desc">Introducción a la temática. Presentación de speakers. Ejercicios de percepción
+                  ampliada.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-n">Día 02</div>
+                <div class="step-name">Exploración de sistemas</div>
+                <div class="step-desc">Mapeo de fuerzas. Identificación de fricciones y oportunidades en el campo
+                  problemático.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-n">Día 03</div>
+                <div class="step-name">Futuros posibles</div>
+                <div class="step-desc">Prospectiva. Construcción de escenarios. Ficción especulativa como herramienta de
+                  pensamiento.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-n">Día 04</div>
+                <div class="step-name">Prototipado de ideas</div>
+                <div class="step-desc">Desarrollo de conceptos con potencial de valor social. Cruce interdisciplinar
+                  intencional.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-n">Día 05</div>
+                <div class="step-name">Cierre y pitch</div>
+                <div class="step-desc">Presentación pública de ideas generadas ante comunidad, mentores e invitados.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top:40px">
+          <div>
+            <div class="col-label">Edición 1 — Q2 2027</div>
+            <p class="col-body" style="font-size:13px;color:var(--ink);margin-bottom:7px;font-weight:300">Silver Economy
+              &amp; Lifestyle</p>
+            <p class="col-body">¿Cómo se diseña el estilo de vida de una generación que ya no quiere ser definida por su
+              edad sino por sus elecciones? La generación +50 como protagonista de la innovación, no como destinataria
+              de servicios.</p>
+          </div>
+          <div>
+            <div class="col-label">Edición 2 — Q4 2027</div>
+            <p class="col-body" style="font-size:13px;color:var(--ink);margin-bottom:7px;font-weight:300">Temática a
+              definir</p>
+            <p class="col-body">La segunda edición incorpora aprendizajes de la primera. Su temática se definirá en
+              conjunto con la comunidad construida en Ed.1, speakers y aliados estratégicos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">Roadmap 2027–2028</h2>
+        </div>
+        <div class="rm-wrap">
+          <table class="rm">
+            <thead class="yr1">
+              <tr>
+                <th style="width:130px">Track</th>
+                <th colspan="4">Año 1 — 2027</th>
+              </tr>
+            </thead>
+            <thead class="qr">
+              <tr>
+                <th></th>
+                <th>Q1</th>
+                <th>Q2</th>
+                <th>Q3</th>
+                <th>Q4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rm-track">Fundación</td>
+                <td><span class="rmb blue">Marco y materiales</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="rm-track">Convocatoria</td>
+                <td><span class="rmb teal">Difusión activa</span><br><span class="rmb teal">Convocatoria</span></td>
+                <td><span class="rmb teal">Ed.1 abierta</span></td>
+                <td><span class="rmb teal">Difusión activa</span><br><span class="rmb teal">Convocatoria</span></td>
+                <td><span class="rmb teal">Ed.2 abierta</span></td>
+              </tr>
+              <tr>
+                <td class="rm-track">Bootcamp</td>
+                <td></td>
+                <td><span class="rmb star">Ed.1 ★ Silver Economy</span></td>
+                <td></td>
+                <td><span class="rmb star">Ed.2 ★ Tem. abierta</span></td>
+              </tr>
+              <tr>
+                <td class="rm-track">Seguimiento</td>
+                <td></td>
+                <td></td>
+                <td><span class="rmb blue">Red y proyectos</span></td>
+                <td><span class="rmb blue">Red y proyectos</span></td>
+              </tr>
+            </tbody>
+            <thead class="yr2">
+              <tr>
+                <th>Track</th>
+                <th colspan="4">Año 2 — 2028</th>
+              </tr>
+            </thead>
+            <thead class="qr">
+              <tr>
+                <th></th>
+                <th>Q1</th>
+                <th>Q2</th>
+                <th>Q3</th>
+                <th>Q4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rm-track">Jornadas comunidad</td>
+                <td><span class="rmb teal">Jornadas de comunidad - Mensual (×3)</span></td>
+                <td><span class="rmb teal">Jornadas de comunidad - Mensual (×3)</span></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="rm-track">Publicaciones</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="rmb blue">Publicación Ed.1–2</span></td>
+              </tr>
+              <tr>
+                <td class="rm-track">Muestras</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="rmb blue">Muestra Ed.1–2</span></td>
+              </tr>
+              <tr>
+                <td class="rm-track">Aceleración</td>
+                <td></td>
+                <td></td>
+                <td><span class="rmb soft">Selección</span></td>
+                <td><span class="rmb soft">Acompañamiento</span></td>
+              </tr>
+              <tr>
+                <td class="rm-track">Escala</td>
+                <td></td>
+                <td></td>
+                <td><span class="rmb soft">Evaluación modelo</span></td>
+                <td><span class="rmb dark">Decisión formato</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- FASES -->
+      <section id="fases">
+        <div class="container">
+          <div class="sec-header">
+            <span class="sec-num">03b</span>
+            <h2 class="sec-title">Desglose por fase</h2>
+          </div>
+          <div class="fases-grid">
+            <div class="fase-card">
+              <div class="fase-num">Fase 0</div>
+              <div class="fase-name">Fundación</div>
+              <div class="fase-meta">Q1 2027</div>
+              <p class="fase-desc">Construcción de los materiales fundacionales del proyecto: marco conceptual,
+                propuesta
+                de valor, identidad visual y canales de comunicación. Definición de la temática de la primera edición.
+                Armado del equipo coordinador y primeros contactos con el ecosistema de speakers y partners.</p>
+            </div>
+            <div class="fase-card">
+              <div class="fase-num">Fase 1</div>
+              <div class="fase-name">Difusión y convocatoria Ed.1</div>
+              <div class="fase-meta">Q2 2027 · Mes 1–2</div>
+              <p class="fase-desc">Dos meses dedicados exclusivamente a instalar el proyecto en la escena y sumar
+                participantes. <b>Mes 1:</b> Difusión y contenido editorial. <b>Mes 2:</b> Convocatoria abierta,
+                selección
+                y criterios de diversidad disciplinar.</p>
+            </div>
+            <div class="fase-card">
+              <div class="fase-num">Fase 2</div>
+              <div class="fase-name">Bootcamp Ed.1</div>
+              <div class="fase-meta">Q2 2027 · Semana 5</div>
+              <p class="fase-desc">Semana intensiva de trabajo colectivo. Cinco días con talleres de prospectiva,
+                charlas
+                de speakers, trabajo en grupos interdisciplinares y pitch final abierto a la comunidad.</p>
+            </div>
+            <div class="fase-card">
+              <div class="fase-num">Fase 3</div>
+              <div class="fase-name">Seguimiento Ed.1</div>
+              <div class="fase-meta">Q3 2027</div>
+              <p class="fase-desc">Acompañamiento de los proyectos generados durante el bootcamp. Construcción de red
+                entre participantes, speakers y potenciales implementadores. Inicio de documentación del proceso.</p>
+            </div>
+            <div class="fase-card">
+              <div class="fase-num">Fase 4</div>
+              <div class="fase-name">Difusión y convocatoria Ed.2</div>
+              <div class="fase-meta">Q4 2027 · Mes 1–2</div>
+              <p class="fase-desc">Segunda edición con nueva temática. El proceso de difusión incorpora los resultados y
+                aprendizajes de la primera edición como argumento central.</p>
+            </div>
+            <div class="fase-card">
+              <div class="fase-num">Fase 5</div>
+              <div class="fase-name">Bootcamp Ed.2</div>
+              <div class="fase-meta">Q4 2027 · Semana 5</div>
+              <p class="fase-desc">Segunda semana intensiva. El formato ha sido iterado a partir del feedback de la
+                primera
+                edición, incorporando mejoras metodológicas y mayor integración.</p>
+            </div>
+            <div class="fase-card wide">
+              <div class="fase-num">Fase 6</div>
+              <div class="fase-name">Jornadas de comunidad</div>
+              <div class="fase-meta">Q1–Q2 2028</div>
+              <p class="fase-desc">Serie de 6 jornadas mensuales orientadas a sostener el hábito de encuentro y los
+                vínculos. Charlas breves con invitados y espacio de networking para conectar proyectos con mentores e
+                implementadores. Acceso abierto a la comunidad del laboratorio.</p>
+            </div>
+            <div class="fase-card wide">
+              <div class="fase-num">Fase 7</div>
+              <div class="fase-name">Año 2: Publicaciones, muestras y aceleración</div>
+              <div class="fase-meta">Año 2028</div>
+              <p class="fase-desc">Producción de publicaciones que documentan el proceso. Organización de una muestra
+                pública de proyectos. Acompañamiento para desarrollo de proyectos con alto impacto social. Evaluación
+                del
+                modelo para definir el formato de escala futura.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPEAKERS -->
+      <section id="speakers">
+        <div class="container">
+          <div class="sec-header">
+            <span class="sec-num">04</span>
+            <h2 class="sec-title">Speakers Ed.1</h2>
+          </div>
+          <p style="font-size:12px;font-weight:300;color:var(--muted);max-width:520px">Perfiles seleccionados por
+            capacidad de tensar la pregunta central desde disciplinas distintas.</p>
+          <div class="spk-grid">
+            <div class="spk">
+              <div class="spk-tag">Tecnología · futuro</div>
+              <div class="spk-name">Santiago Bilinkis</div>
+              <div class="spk-role">Tecnólogo · divulgador · emprendedor</div>
+              <p class="spk-why">Referente en futuro y longevidad. Alumni de Singularity. Alcance masivo en ciencia y
+                tecnología.</p>
+            </div>
+            <div class="spk">
+              <div class="spk-tag">Política digital · futuro</div>
+              <div class="spk-name">Santiago Siri</div>
+              <div class="spk-role">Emprendedor · futurista · activista</div>
+              <p class="spk-why">Pionero en tecnología cívica y blockchain. Perspectiva radical sobre futuros posibles y
+                democracia digital.</p>
+            </div>
+            <div class="spk">
+              <div class="spk-tag">Cultura · innovación</div>
+              <div class="spk-name">Mario Pergolini</div>
+              <div class="spk-role">Comunicador · emprendedor cultural</div>
+              <p class="spk-why">Creador de Vorterix. Encarna la reinvención profesional en la madurez y la construcción
+                de nuevas audiencias.</p>
+            </div>
+            <div class="spk">
+              <div class="spk-tag">Silver Economy · consumo</div>
+              <div class="spk-name">Guillermo Oliveto</div>
+              <div class="spk-role">Economista · CEO W &amp; Almatrends</div>
+              <p class="spk-why">El referente más citado sobre hábitos Gen Silver en Argentina. 40% del consumo global.
+              </p>
+            </div>
+            <div class="spk">
+              <div class="spk-tag">Cine · arte · narrativa</div>
+              <div class="spk-name">Lucrecia Martel</div>
+              <div class="spk-role">Directora · artista visual · pensadora</div>
+              <p class="spk-why">Una de las cineastas latinoamericanas más influyentes. Su obra explora la percepción,
+                el
+                cuerpo y el tiempo desde una perspectiva radicalmente no convencional.</p>
+            </div>
+            <div class="spk">
+              <div class="spk-tag">Arte · tecnología · MALBA</div>
+              <div class="spk-name">Silvia Rivas</div>
+              <div class="spk-role">Artista visual · pionera arte-tech</div>
+              <p class="spk-why">Pionera en video-instalación tecnológica. Muestra en MALBA 2025. Puente entre arte
+                contemporáneo e investigación.</p>
+            </div>
+            <div class="spk">
+              <div class="spk-tag">Longevidad · salud</div>
+              <div class="spk-name">Conrado Estol</div>
+              <div class="spk-role">Médico · fundador BREYNA</div>
+              <p class="spk-why">Especialista en longevidad y calidad de vida. Cómo vivir bien más años, no solo vivir
+                más.</p>
+            </div>
+            <div class="spk">
+              <div class="spk-tag">Innovación · CCK</div>
+              <div class="spk-name">Gino Tubaro</div>
+              <div class="spk-role">Inventor · maker · divulgador</div>
+              <p class="spk-why">Innovación accesible y tecnología con impacto. Presencia en CCK y Tecnópolis. Convoca
+                audiencias diversas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EQUIPO -->
+      <section id="equipo">
+        <div class="container">
+          <div class="sec-header">
+            <span class="sec-num">05</span>
+            <h2 class="sec-title">Equipo y aliados</h2>
+          </div>
+          <div class="team-row">
+            <div class="team-card">
+              <div class="team-init">LP</div>
+              <div class="team-name">Luciana Perrone</div>
+              <div class="team-role">Dirección · facilitación · comunicación</div>
+            </div>
+            <div class="team-card">
+              <div class="team-init">MF</div>
+              <div class="team-name">Mariana Fiorillo</div>
+              <div class="team-role">Dirección · facilitación · comunicación</div>
+            </div>
+          </div>
+          <div class="col-label" style="margin-top:28px;margin-bottom:0">Aliados estratégicos</div>
+          <div class="allies-grid">
+            <div class="ally">
+              <div class="ally-name">Silver Economy Forum Latam</div>
+              <div class="ally-type">Promotor · comunidad silver · difusión</div>
+            </div>
+            <div class="ally">
+              <div class="ally-name">SingularityU Buenos Aires</div>
+              <div class="ally-type">Aliado estratégico · red · metodología</div>
+            </div>
+            <div class="ally">
+              <div class="ally-name">Artlab / MUTEK Buenos Aires</div>
+              <div class="ally-type">Arte digital · CCK · red internacional</div>
+            </div>
+            <div class="ally">
+              <div class="ally-name">Endeavor Argentina</div>
+              <div class="ally-type">Red de emprendedores · amplificación</div>
+            </div>
+            <div class="ally">
+              <div class="ally-name">UNTREF / UDESA / Di Tella</div>
+              <div class="ally-type">Certificación · comunidad académica</div>
+            </div>
+            <div class="ally">
+              <div class="ally-name">Fondo Nacional de las Artes</div>
+              <div class="ally-type">Financiamiento · legitimidad pública</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESCALA -->
+      <section id="escala">
+        <div class="container">
+          <div class="sec-header">
+            <span class="sec-num">06</span>
+            <h2 class="sec-title">Potencial de escala</h2>
+          </div>
+          <div class="scale-grid">
+            <div class="c-cell">
+              <div class="c-label">Dimensión 01</div>
+              <div class="c-name">Replicabilidad</div>
+              <p class="c-body">El bootcamp temático puede replicarse en otros contextos geográficos e institucionales.
+                Cada edición genera documentación metodológica que alimenta futuras réplicas.</p>
+            </div>
+            <div class="c-cell dark">
+              <div class="c-label">Dimensión 02</div>
+              <div class="c-name">Licenciamiento</div>
+              <p class="c-body">Sistema metodológico transferible que otras organizaciones pueden implementar bajo
+                licencia o con acompañamiento directo del equipo.</p>
+            </div>
+            <div class="c-cell">
+              <div class="c-label">Dimensión 03</div>
+              <div class="c-name">Comunidad global</div>
+              <p class="c-body">La red de alumni construida edición a edición es un activo estratégico que trasciende el
+                evento y puede articularse como plataforma de conocimiento distribuido.</p>
+            </div>
+          </div>
+          <div class="col-label" style="margin-top:32px;margin-bottom:0">Próximos pasos</div>
+          <div class="steps-list">
+            <div class="step-item"><span class="step-nn">01</span>Definir la temática de la primera edición y construir
+              el
+              brief que la comunica.</div>
+            <div class="step-item"><span class="step-nn">02</span>Identificar y confirmar el espacio físico para el
+              bootcamp piloto.</div>
+            <div class="step-item"><span class="step-nn">03</span>Iniciar los primeros contactos con speakers y aliados
+              estratégicos.</div>
+            <div class="step-item"><span class="step-nn">04</span>Lanzar identidad visual y canales de comunicación en
+              Q1
+              2027.</div>
+            <div class="step-item"><span class="step-nn">05</span>Cerrar acuerdos con mecenas e inversores antes de Q2
+              2027.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLOPHON -->
+      <section id="colo">
+        <div class="blob b3"></div>
+        <div class="blob b4"></div>
+        <div class="container">
+          <div class="colo-grid">
+            <div class="colo-meta">
+              Laboratorio de Futuros<br>
+              Propuesta provisional · Abril 2026<br><br>
+              Coordinación<br>
+              Luciana Perrone · Mariana Fiorillo<br><br>
+              Arte · Ciencias de la vida · Tecnología<br>
+              Buenos Aires · 2027–2028<br><br>
+              Para consultas e interés en participar<br>
+              como aliado, inversor o speaker,<br>
+              contactarse con el equipo coordinador.
+            </div>
+            <div class="colo-big">Futuros<br>posibles.</div>
+          </div>
+        </div>
+      </section>
+
+  </main>
+
+  <script>
+    const sections = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nav-links a');
+
+    const options = {
+      root: null,
+      rootMargin: '-10% 0px -70% 0px', // Detects section near the top
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+          const id = entry.target.getAttribute('id');
+          links.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, options);
+
+    sections.forEach(section => observer.observe(section));
+
+    // Fallback for manual clicks to ensure priority
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+  </script>
+</body>
+
+</html>
