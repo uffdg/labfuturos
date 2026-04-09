@@ -100,8 +100,9 @@
 
     .nav-links a.active {
       color: var(--ink);
-      font-weight: 600;
       background: #fff;
+      text-shadow: 0.5px 0 0 currentColor;
+      /* Subtle bold effect without width change */
     }
 
     .nav-links a.active::after {
@@ -114,6 +115,24 @@
       background: var(--accent)
     }
 
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 110;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: var(--ink);
+      margin: 4px 0;
+      transition: all .2s;
+    }
+
     /* --- LAYOUT --- */
     main {
       padding-top: var(--nav-h)
@@ -123,7 +142,8 @@
       padding: 64px 0;
       border-bottom: 1px solid var(--rule);
       position: relative;
-      overflow: hidden
+      overflow: hidden;
+      scroll-margin-top: calc(var(--nav-h));
     }
 
     section:last-child {
@@ -823,6 +843,61 @@
     }
 
     /* --- RESPONSIVE --- */
+    @media(max-width:600px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        border-bottom: 1px solid var(--rule2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        align-items: stretch;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        border-left: none;
+        border-bottom: 1px solid var(--rule);
+        height: 52px;
+        padding: 0 24px;
+        font-size: 10px;
+      }
+
+      .nav-links a:last-child {
+        border-right: none;
+      }
+
+      .nav-links a.active::after {
+        left: 0;
+        width: 3px;
+        height: 100%;
+        bottom: 0;
+      }
+
+      /* Hamburger animation */
+      .nav-toggle.open span:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+      }
+
+      .nav-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle.open span:nth-child(3) {
+        transform: translateY(-5px) rotate(-45deg);
+      }
+    }
+
     @media(max-width:680px) {
 
       .cover-grid,
@@ -871,7 +946,12 @@
 
   <nav>
     <span class="nav-logo">Laboratorio de Futuros</span>
-    <div class="nav-links">
+    <button class="nav-toggle" id="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
       <a href="#concepto">Concepto</a>
       <a href="#formato">Formato</a>
       <a href="#roadmap">Roadmap</a>
@@ -1014,7 +1094,7 @@
 
 
             </svg>
-            <p class="cone-caption">PPPP. Illustration by Dunne & Raby.</p>
+            <p class="cone-caption">Illustration by Dunne & Raby.</p>
           </div>
 
           <!-- STEPS -->
@@ -1191,269 +1271,271 @@
           </table>
         </div>
       </div>
-      <!-- FASES -->
-      <section id="fases">
-        <div class="container">
-          <div class="sec-header">
-            <span class="sec-num">03b</span>
-            <h2 class="sec-title">Desglose por fase</h2>
+    </section>
+
+    <!-- FASES -->
+    <section id="fases">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-num">03b</span>
+          <h2 class="sec-title">Desglose por fase</h2>
+        </div>
+        <div class="fases-grid">
+          <div class="fase-card">
+            <div class="fase-num">Fase 0</div>
+            <div class="fase-name">Fundación</div>
+            <div class="fase-meta">Q1 2027</div>
+            <p class="fase-desc">Construcción de los materiales fundacionales del proyecto: marco conceptual,
+              propuesta
+              de valor, identidad visual y canales de comunicación. Definición de la temática de la primera edición.
+              Armado del equipo coordinador y primeros contactos con el ecosistema de speakers y partners.</p>
           </div>
-          <div class="fases-grid">
-            <div class="fase-card">
-              <div class="fase-num">Fase 0</div>
-              <div class="fase-name">Fundación</div>
-              <div class="fase-meta">Q1 2027</div>
-              <p class="fase-desc">Construcción de los materiales fundacionales del proyecto: marco conceptual,
-                propuesta
-                de valor, identidad visual y canales de comunicación. Definición de la temática de la primera edición.
-                Armado del equipo coordinador y primeros contactos con el ecosistema de speakers y partners.</p>
-            </div>
-            <div class="fase-card">
-              <div class="fase-num">Fase 1</div>
-              <div class="fase-name">Difusión y convocatoria Ed.1</div>
-              <div class="fase-meta">Q2 2027 · Mes 1–2</div>
-              <p class="fase-desc">Dos meses dedicados exclusivamente a instalar el proyecto en la escena y sumar
-                participantes. <b>Mes 1:</b> Difusión y contenido editorial. <b>Mes 2:</b> Convocatoria abierta,
-                selección
-                y criterios de diversidad disciplinar.</p>
-            </div>
-            <div class="fase-card">
-              <div class="fase-num">Fase 2</div>
-              <div class="fase-name">Bootcamp Ed.1</div>
-              <div class="fase-meta">Q2 2027 · Semana 5</div>
-              <p class="fase-desc">Semana intensiva de trabajo colectivo. Cinco días con talleres de prospectiva,
-                charlas
-                de speakers, trabajo en grupos interdisciplinares y pitch final abierto a la comunidad.</p>
-            </div>
-            <div class="fase-card">
-              <div class="fase-num">Fase 3</div>
-              <div class="fase-name">Seguimiento Ed.1</div>
-              <div class="fase-meta">Q3 2027</div>
-              <p class="fase-desc">Acompañamiento de los proyectos generados durante el bootcamp. Construcción de red
-                entre participantes, speakers y potenciales implementadores. Inicio de documentación del proceso.</p>
-            </div>
-            <div class="fase-card">
-              <div class="fase-num">Fase 4</div>
-              <div class="fase-name">Difusión y convocatoria Ed.2</div>
-              <div class="fase-meta">Q4 2027 · Mes 1–2</div>
-              <p class="fase-desc">Segunda edición con nueva temática. El proceso de difusión incorpora los resultados y
-                aprendizajes de la primera edición como argumento central.</p>
-            </div>
-            <div class="fase-card">
-              <div class="fase-num">Fase 5</div>
-              <div class="fase-name">Bootcamp Ed.2</div>
-              <div class="fase-meta">Q4 2027 · Semana 5</div>
-              <p class="fase-desc">Segunda semana intensiva. El formato ha sido iterado a partir del feedback de la
-                primera
-                edición, incorporando mejoras metodológicas y mayor integración.</p>
-            </div>
-            <div class="fase-card wide">
-              <div class="fase-num">Fase 6</div>
-              <div class="fase-name">Jornadas de comunidad</div>
-              <div class="fase-meta">Q1–Q2 2028</div>
-              <p class="fase-desc">Serie de 6 jornadas mensuales orientadas a sostener el hábito de encuentro y los
-                vínculos. Charlas breves con invitados y espacio de networking para conectar proyectos con mentores e
-                implementadores. Acceso abierto a la comunidad del laboratorio.</p>
-            </div>
-            <div class="fase-card wide">
-              <div class="fase-num">Fase 7</div>
-              <div class="fase-name">Año 2: Publicaciones, muestras y aceleración</div>
-              <div class="fase-meta">Año 2028</div>
-              <p class="fase-desc">Producción de publicaciones que documentan el proceso. Organización de una muestra
-                pública de proyectos. Acompañamiento para desarrollo de proyectos con alto impacto social. Evaluación
-                del
-                modelo para definir el formato de escala futura.</p>
-            </div>
+          <div class="fase-card">
+            <div class="fase-num">Fase 1</div>
+            <div class="fase-name">Difusión y convocatoria Ed.1</div>
+            <div class="fase-meta">Q2 2027 · Mes 1–2</div>
+            <p class="fase-desc">Dos meses dedicados exclusivamente a instalar el proyecto en la escena y sumar
+              participantes. <b>Mes 1:</b> Difusión y contenido editorial. <b>Mes 2:</b> Convocatoria abierta,
+              selección
+              y criterios de diversidad disciplinar.</p>
+          </div>
+          <div class="fase-card">
+            <div class="fase-num">Fase 2</div>
+            <div class="fase-name">Bootcamp Ed.1</div>
+            <div class="fase-meta">Q2 2027 · Semana 5</div>
+            <p class="fase-desc">Semana intensiva de trabajo colectivo. Cinco días con talleres de prospectiva,
+              charlas
+              de speakers, trabajo en grupos interdisciplinares y pitch final abierto a la comunidad.</p>
+          </div>
+          <div class="fase-card">
+            <div class="fase-num">Fase 3</div>
+            <div class="fase-name">Seguimiento Ed.1</div>
+            <div class="fase-meta">Q3 2027</div>
+            <p class="fase-desc">Acompañamiento de los proyectos generados durante el bootcamp. Construcción de red
+              entre participantes, speakers y potenciales implementadores. Inicio de documentación del proceso.</p>
+          </div>
+          <div class="fase-card">
+            <div class="fase-num">Fase 4</div>
+            <div class="fase-name">Difusión y convocatoria Ed.2</div>
+            <div class="fase-meta">Q4 2027 · Mes 1–2</div>
+            <p class="fase-desc">Segunda edición con nueva temática. El proceso de difusión incorpora los resultados y
+              aprendizajes de la primera edición como argumento central.</p>
+          </div>
+          <div class="fase-card">
+            <div class="fase-num">Fase 5</div>
+            <div class="fase-name">Bootcamp Ed.2</div>
+            <div class="fase-meta">Q4 2027 · Semana 5</div>
+            <p class="fase-desc">Segunda semana intensiva. El formato ha sido iterado a partir del feedback de la
+              primera
+              edición, incorporando mejoras metodológicas y mayor integración.</p>
+          </div>
+          <div class="fase-card wide">
+            <div class="fase-num">Fase 6</div>
+            <div class="fase-name">Jornadas de comunidad</div>
+            <div class="fase-meta">Q1–Q2 2028</div>
+            <p class="fase-desc">Serie de 6 jornadas mensuales orientadas a sostener el hábito de encuentro y los
+              vínculos. Charlas breves con invitados y espacio de networking para conectar proyectos con mentores e
+              implementadores. Acceso abierto a la comunidad del laboratorio.</p>
+          </div>
+          <div class="fase-card wide">
+            <div class="fase-num">Fase 7</div>
+            <div class="fase-name">Año 2: Publicaciones, muestras y aceleración</div>
+            <div class="fase-meta">Año 2028</div>
+            <p class="fase-desc">Producción de publicaciones que documentan el proceso. Organización de una muestra
+              pública de proyectos. Acompañamiento para desarrollo de proyectos con alto impacto social. Evaluación
+              del
+              modelo para definir el formato de escala futura.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SPEAKERS -->
-      <section id="speakers">
-        <div class="container">
-          <div class="sec-header">
-            <span class="sec-num">04</span>
-            <h2 class="sec-title">Speakers Ed.1</h2>
-          </div>
-          <p style="font-size:12px;font-weight:300;color:var(--muted);max-width:520px">Perfiles seleccionados por
-            capacidad de tensar la pregunta central desde disciplinas distintas.</p>
-          <div class="spk-grid">
-            <div class="spk">
-              <div class="spk-tag">Tecnología · futuro</div>
-              <div class="spk-name">Santiago Bilinkis</div>
-              <div class="spk-role">Tecnólogo · divulgador · emprendedor</div>
-              <p class="spk-why">Referente en futuro y longevidad. Alumni de Singularity. Alcance masivo en ciencia y
-                tecnología.</p>
-            </div>
-            <div class="spk">
-              <div class="spk-tag">Política digital · futuro</div>
-              <div class="spk-name">Santiago Siri</div>
-              <div class="spk-role">Emprendedor · futurista · activista</div>
-              <p class="spk-why">Pionero en tecnología cívica y blockchain. Perspectiva radical sobre futuros posibles y
-                democracia digital.</p>
-            </div>
-            <div class="spk">
-              <div class="spk-tag">Cultura · innovación</div>
-              <div class="spk-name">Mario Pergolini</div>
-              <div class="spk-role">Comunicador · emprendedor cultural</div>
-              <p class="spk-why">Creador de Vorterix. Encarna la reinvención profesional en la madurez y la construcción
-                de nuevas audiencias.</p>
-            </div>
-            <div class="spk">
-              <div class="spk-tag">Silver Economy · consumo</div>
-              <div class="spk-name">Guillermo Oliveto</div>
-              <div class="spk-role">Economista · CEO W &amp; Almatrends</div>
-              <p class="spk-why">El referente más citado sobre hábitos Gen Silver en Argentina. 40% del consumo global.
-              </p>
-            </div>
-            <div class="spk">
-              <div class="spk-tag">Cine · arte · narrativa</div>
-              <div class="spk-name">Lucrecia Martel</div>
-              <div class="spk-role">Directora · artista visual · pensadora</div>
-              <p class="spk-why">Una de las cineastas latinoamericanas más influyentes. Su obra explora la percepción,
-                el
-                cuerpo y el tiempo desde una perspectiva radicalmente no convencional.</p>
-            </div>
-            <div class="spk">
-              <div class="spk-tag">Arte · tecnología · MALBA</div>
-              <div class="spk-name">Silvia Rivas</div>
-              <div class="spk-role">Artista visual · pionera arte-tech</div>
-              <p class="spk-why">Pionera en video-instalación tecnológica. Muestra en MALBA 2025. Puente entre arte
-                contemporáneo e investigación.</p>
-            </div>
-            <div class="spk">
-              <div class="spk-tag">Longevidad · salud</div>
-              <div class="spk-name">Conrado Estol</div>
-              <div class="spk-role">Médico · fundador BREYNA</div>
-              <p class="spk-why">Especialista en longevidad y calidad de vida. Cómo vivir bien más años, no solo vivir
-                más.</p>
-            </div>
-            <div class="spk">
-              <div class="spk-tag">Innovación · CCK</div>
-              <div class="spk-name">Gino Tubaro</div>
-              <div class="spk-role">Inventor · maker · divulgador</div>
-              <p class="spk-why">Innovación accesible y tecnología con impacto. Presencia en CCK y Tecnópolis. Convoca
-                audiencias diversas.</p>
-            </div>
-          </div>
+    <!-- SPEAKERS -->
+    <section id="speakers">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">Speakers Ed.1</h2>
         </div>
-      </section>
-
-      <!-- EQUIPO -->
-      <section id="equipo">
-        <div class="container">
-          <div class="sec-header">
-            <span class="sec-num">05</span>
-            <h2 class="sec-title">Equipo y aliados</h2>
+        <p style="font-size:12px;font-weight:300;color:var(--muted);max-width:520px">Perfiles seleccionados por
+          capacidad de tensar la pregunta central desde disciplinas distintas.</p>
+        <div class="spk-grid">
+          <div class="spk">
+            <div class="spk-tag">Tecnología · futuro</div>
+            <div class="spk-name">Santiago Bilinkis</div>
+            <div class="spk-role">Tecnólogo · divulgador · emprendedor</div>
+            <p class="spk-why">Referente en futuro y longevidad. Alumni de Singularity. Alcance masivo en ciencia y
+              tecnología.</p>
           </div>
-          <div class="team-row">
-            <div class="team-card">
-              <div class="team-init">LP</div>
-              <div class="team-name">Luciana Perrone</div>
-              <div class="team-role">Dirección · facilitación · comunicación</div>
-            </div>
-            <div class="team-card">
-              <div class="team-init">MF</div>
-              <div class="team-name">Mariana Fiorillo</div>
-              <div class="team-role">Dirección · facilitación · comunicación</div>
-            </div>
+          <div class="spk">
+            <div class="spk-tag">Política digital · futuro</div>
+            <div class="spk-name">Santiago Siri</div>
+            <div class="spk-role">Emprendedor · futurista · activista</div>
+            <p class="spk-why">Pionero en tecnología cívica y blockchain. Perspectiva radical sobre futuros posibles y
+              democracia digital.</p>
           </div>
-          <div class="col-label" style="margin-top:28px;margin-bottom:0">Aliados estratégicos</div>
-          <div class="allies-grid">
-            <div class="ally">
-              <div class="ally-name">Silver Economy Forum Latam</div>
-              <div class="ally-type">Promotor · comunidad silver · difusión</div>
-            </div>
-            <div class="ally">
-              <div class="ally-name">SingularityU Buenos Aires</div>
-              <div class="ally-type">Aliado estratégico · red · metodología</div>
-            </div>
-            <div class="ally">
-              <div class="ally-name">Artlab / MUTEK Buenos Aires</div>
-              <div class="ally-type">Arte digital · CCK · red internacional</div>
-            </div>
-            <div class="ally">
-              <div class="ally-name">Endeavor Argentina</div>
-              <div class="ally-type">Red de emprendedores · amplificación</div>
-            </div>
-            <div class="ally">
-              <div class="ally-name">UNTREF / UDESA / Di Tella</div>
-              <div class="ally-type">Certificación · comunidad académica</div>
-            </div>
-            <div class="ally">
-              <div class="ally-name">Fondo Nacional de las Artes</div>
-              <div class="ally-type">Financiamiento · legitimidad pública</div>
-            </div>
+          <div class="spk">
+            <div class="spk-tag">Cultura · innovación</div>
+            <div class="spk-name">Mario Pergolini</div>
+            <div class="spk-role">Comunicador · emprendedor cultural</div>
+            <p class="spk-why">Creador de Vorterix. Encarna la reinvención profesional en la madurez y la construcción
+              de nuevas audiencias.</p>
           </div>
-        </div>
-      </section>
-
-      <!-- ESCALA -->
-      <section id="escala">
-        <div class="container">
-          <div class="sec-header">
-            <span class="sec-num">06</span>
-            <h2 class="sec-title">Potencial de escala</h2>
+          <div class="spk">
+            <div class="spk-tag">Silver Economy · consumo</div>
+            <div class="spk-name">Guillermo Oliveto</div>
+            <div class="spk-role">Economista · CEO W &amp; Almatrends</div>
+            <p class="spk-why">El referente más citado sobre hábitos Gen Silver en Argentina. 40% del consumo global.
+            </p>
           </div>
-          <div class="scale-grid">
-            <div class="c-cell">
-              <div class="c-label">Dimensión 01</div>
-              <div class="c-name">Replicabilidad</div>
-              <p class="c-body">El bootcamp temático puede replicarse en otros contextos geográficos e institucionales.
-                Cada edición genera documentación metodológica que alimenta futuras réplicas.</p>
-            </div>
-            <div class="c-cell dark">
-              <div class="c-label">Dimensión 02</div>
-              <div class="c-name">Licenciamiento</div>
-              <p class="c-body">Sistema metodológico transferible que otras organizaciones pueden implementar bajo
-                licencia o con acompañamiento directo del equipo.</p>
-            </div>
-            <div class="c-cell">
-              <div class="c-label">Dimensión 03</div>
-              <div class="c-name">Comunidad global</div>
-              <p class="c-body">La red de alumni construida edición a edición es un activo estratégico que trasciende el
-                evento y puede articularse como plataforma de conocimiento distribuido.</p>
-            </div>
-          </div>
-          <div class="col-label" style="margin-top:32px;margin-bottom:0">Próximos pasos</div>
-          <div class="steps-list">
-            <div class="step-item"><span class="step-nn">01</span>Definir la temática de la primera edición y construir
+          <div class="spk">
+            <div class="spk-tag">Cine · arte · narrativa</div>
+            <div class="spk-name">Lucrecia Martel</div>
+            <div class="spk-role">Directora · artista visual · pensadora</div>
+            <p class="spk-why">Una de las cineastas latinoamericanas más influyentes. Su obra explora la percepción,
               el
-              brief que la comunica.</div>
-            <div class="step-item"><span class="step-nn">02</span>Identificar y confirmar el espacio físico para el
-              bootcamp piloto.</div>
-            <div class="step-item"><span class="step-nn">03</span>Iniciar los primeros contactos con speakers y aliados
-              estratégicos.</div>
-            <div class="step-item"><span class="step-nn">04</span>Lanzar identidad visual y canales de comunicación en
-              Q1
-              2027.</div>
-            <div class="step-item"><span class="step-nn">05</span>Cerrar acuerdos con mecenas e inversores antes de Q2
-              2027.</div>
+              cuerpo y el tiempo desde una perspectiva radicalmente no convencional.</p>
+          </div>
+          <div class="spk">
+            <div class="spk-tag">Arte · tecnología · MALBA</div>
+            <div class="spk-name">Silvia Rivas</div>
+            <div class="spk-role">Artista visual · pionera arte-tech</div>
+            <p class="spk-why">Pionera en video-instalación tecnológica. Muestra en MALBA 2025. Puente entre arte
+              contemporáneo e investigación.</p>
+          </div>
+          <div class="spk">
+            <div class="spk-tag">Longevidad · salud</div>
+            <div class="spk-name">Conrado Estol</div>
+            <div class="spk-role">Médico · fundador BREYNA</div>
+            <p class="spk-why">Especialista en longevidad y calidad de vida. Cómo vivir bien más años, no solo vivir
+              más.</p>
+          </div>
+          <div class="spk">
+            <div class="spk-tag">Innovación · CCK</div>
+            <div class="spk-name">Gino Tubaro</div>
+            <div class="spk-role">Inventor · maker · divulgador</div>
+            <p class="spk-why">Innovación accesible y tecnología con impacto. Presencia en CCK y Tecnópolis. Convoca
+              audiencias diversas.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- COLOPHON -->
-      <section id="colo">
-        <div class="blob b3"></div>
-        <div class="blob b4"></div>
-        <div class="container">
-          <div class="colo-grid">
-            <div class="colo-meta">
-              Laboratorio de Futuros<br>
-              Propuesta provisional · Abril 2026<br><br>
-              Coordinación<br>
-              Luciana Perrone · Mariana Fiorillo<br><br>
-              Arte · Ciencias de la vida · Tecnología<br>
-              Buenos Aires · 2027–2028<br><br>
-              Para consultas e interés en participar<br>
-              como aliado, inversor o speaker,<br>
-              contactarse con el equipo coordinador.
-            </div>
-            <div class="colo-big">Futuros<br><del>posibles.</del> <span>preferibles.</span></div>
+    <!-- EQUIPO -->
+    <section id="equipo">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">Equipo y aliados</h2>
+        </div>
+        <div class="team-row">
+          <div class="team-card">
+            <div class="team-init">LP</div>
+            <div class="team-name">Luciana Perrone</div>
+            <div class="team-role">Dirección · facilitación · comunicación</div>
+          </div>
+          <div class="team-card">
+            <div class="team-init">MF</div>
+            <div class="team-name">Mariana Fiorillo</div>
+            <div class="team-role">Dirección · facilitación · comunicación</div>
           </div>
         </div>
-      </section>
+        <div class="col-label" style="margin-top:28px;margin-bottom:0">Aliados estratégicos</div>
+        <div class="allies-grid">
+          <div class="ally">
+            <div class="ally-name">Silver Economy Forum Latam</div>
+            <div class="ally-type">Promotor · comunidad silver · difusión</div>
+          </div>
+          <div class="ally">
+            <div class="ally-name">SingularityU Buenos Aires</div>
+            <div class="ally-type">Aliado estratégico · red · metodología</div>
+          </div>
+          <div class="ally">
+            <div class="ally-name">Artlab / MUTEK Buenos Aires</div>
+            <div class="ally-type">Arte digital · CCK · red internacional</div>
+          </div>
+          <div class="ally">
+            <div class="ally-name">Endeavor Argentina</div>
+            <div class="ally-type">Red de emprendedores · amplificación</div>
+          </div>
+          <div class="ally">
+            <div class="ally-name">UNTREF / UDESA / Di Tella</div>
+            <div class="ally-type">Certificación · comunidad académica</div>
+          </div>
+          <div class="ally">
+            <div class="ally-name">Fondo Nacional de las Artes</div>
+            <div class="ally-type">Financiamiento · legitimidad pública</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCALA -->
+    <section id="escala">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-num">06</span>
+          <h2 class="sec-title">Potencial de escala</h2>
+        </div>
+        <div class="scale-grid">
+          <div class="c-cell">
+            <div class="c-label">Dimensión 01</div>
+            <div class="c-name">Replicabilidad</div>
+            <p class="c-body">El bootcamp temático puede replicarse en otros contextos geográficos e institucionales.
+              Cada edición genera documentación metodológica que alimenta futuras réplicas.</p>
+          </div>
+          <div class="c-cell dark">
+            <div class="c-label">Dimensión 02</div>
+            <div class="c-name">Licenciamiento</div>
+            <p class="c-body">Sistema metodológico transferible que otras organizaciones pueden implementar bajo
+              licencia o con acompañamiento directo del equipo.</p>
+          </div>
+          <div class="c-cell">
+            <div class="c-label">Dimensión 03</div>
+            <div class="c-name">Comunidad global</div>
+            <p class="c-body">La red de alumni construida edición a edición es un activo estratégico que trasciende el
+              evento y puede articularse como plataforma de conocimiento distribuido.</p>
+          </div>
+        </div>
+        <div class="col-label" style="margin-top:32px;margin-bottom:0">Próximos pasos</div>
+        <div class="steps-list">
+          <div class="step-item"><span class="step-nn">01</span>Definir la temática de la primera edición y construir
+            el
+            brief que la comunica.</div>
+          <div class="step-item"><span class="step-nn">02</span>Identificar y confirmar el espacio físico para el
+            bootcamp piloto.</div>
+          <div class="step-item"><span class="step-nn">03</span>Iniciar los primeros contactos con speakers y aliados
+            estratégicos.</div>
+          <div class="step-item"><span class="step-nn">04</span>Lanzar identidad visual y canales de comunicación en
+            Q1
+            2027.</div>
+          <div class="step-item"><span class="step-nn">05</span>Cerrar acuerdos con mecenas e inversores antes de Q2
+            2027.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOPHON -->
+    <section id="colo">
+      <div class="blob b3"></div>
+      <div class="blob b4"></div>
+      <div class="container">
+        <div class="colo-grid">
+          <div class="colo-meta">
+            Laboratorio de Futuros<br>
+            Propuesta provisional · Abril 2026<br><br>
+            Coordinación<br>
+            Luciana Perrone · Mariana Fiorillo<br><br>
+            Arte · Ciencias de la vida · Tecnología<br>
+            Buenos Aires · 2027–2028<br><br>
+            Para consultas e interés en participar<br>
+            como aliado, inversor o speaker,<br>
+            contactarse con el equipo coordinador.
+          </div>
+          <div class="colo-big">Futuros<br><del>posibles.</del> <span>preferibles.</span></div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
@@ -1461,30 +1543,57 @@
     const sections = document.querySelectorAll('section[id]');
     const links = document.querySelectorAll('.nav-links a');
 
-    const options = {
-      root: null,
-      rootMargin: '-10% 0px -70% 0px', // Detects section near the top
-      threshold: [0, 0.25, 0.5, 0.75, 1]
-    };
+    function updateActiveLink() {
+      let currentSectionId = "";
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
-          const id = entry.target.getAttribute('id');
-          links.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
+      // Check if we are at the very bottom first
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+        currentSectionId = "escala";
+      } else {
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          // If the section's top is in the top 40% of the screen
+          if (window.scrollY >= sectionTop - (window.innerHeight * 0.4)) {
+            const id = section.getAttribute('id');
+            // Check if this section has a corresponding nav link
+            if (document.querySelector(`.nav-links a[href="#${id}"]`)) {
+              currentSectionId = id;
+            }
+          }
+        });
+      }
+
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
         }
       });
-    }, options);
+    }
 
-    sections.forEach(section => observer.observe(section));
+    window.addEventListener('scroll', updateActiveLink);
+    // Initial call to set state
+    updateActiveLink();
 
-    // Fallback for manual clicks to ensure priority
+    // Mobile menu toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinksContainer = document.getElementById('nav-links');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navLinksContainer.classList.toggle('open');
+    });
+
+    // Manual click priority and menu closing
     links.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
         links.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
+
+        // Close mobile menu when a link is clicked
+        navToggle.classList.remove('open');
+        navLinksContainer.classList.remove('open');
       });
     });
   </script>
