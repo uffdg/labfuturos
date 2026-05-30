@@ -1330,21 +1330,22 @@
       .accordion-container {
         flex-direction: column;
         height: auto;
-        border: none;
-        background: transparent;
-        gap: 12px;
+        border: 1px solid var(--rule2);
+        background: var(--rule2);
+        gap: 1px;
         margin-top: 24px;
       }
       .accordion-item {
         width: 100% !important;
         height: auto;
         flex-direction: column;
-        border: 1px solid var(--rule2);
+        border: none;
         border-radius: 0;
+        background: var(--paper);
       }
       .accordion-item:not(:last-child) {
         border-right: none;
-        border-bottom: 1px solid var(--rule2);
+        border-bottom: none;
       }
       .accordion-header {
         width: 100%;
@@ -1552,7 +1553,6 @@
       .two-col,
       .three-col,
       .formato-layout,
-      .fases-grid,
       .spk-grid,
       .team-row,
       .allies-grid,
@@ -1561,6 +1561,10 @@
       .piezas-grid,
       .actores-grid {
         grid-template-columns: 1fr
+      }
+
+      .fases-grid {
+        grid-template-columns: 1fr !important
       }
 
       .cta-inner {
@@ -2034,7 +2038,7 @@
           <h2 class="sec-title">Roles en el encuentro</h2>
         </div>
         <p class="col-body" style="max-width:620px;margin-bottom:8px">Cada persona llega con un perfil y asume un rol. El cruce de roles es lo que produce el pensamiento que no podría existir en una sola disciplina.</p>
-        <div class="fases-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="fases-grid" style="grid-template-columns:repeat(3,1fr);min-width:0">
           <div class="fase-card">
             <div class="fase-num">Rol 01</div>
             <div class="fase-name">El Arqueólogo</div>
