@@ -61,11 +61,14 @@
     }
 
     .nav-logo {
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--ink)
+      display: flex;
+      align-items: center
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block
     }
 
     .nav-links {
@@ -194,7 +197,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: start
+      align-items: end
     }
 
     .cover-eyebrow {
@@ -217,6 +220,14 @@
 
     .cover-title span {
       color: var(--accent)
+    }
+
+    .cover-logo {
+      display: block;
+      width: 100%;
+      max-width: 460px;
+      height: auto;
+      margin-bottom: 24px
     }
 
     .cover-sub {
@@ -338,8 +349,6 @@
       line-height: 1.6;
       color: var(--ink);
       padding: 32px 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
       margin: 40px 0;
       max-width: 680px;
       letter-spacing: -.01em
@@ -822,6 +831,14 @@
       color: var(--muted)
     }
 
+    .colo-logo {
+      height: 80px;
+      width: auto;
+      display: block;
+      margin-bottom: 20px;
+      opacity: .9
+    }
+
     .colo-big {
       font-size: clamp(28px, 4.5vw, 52px);
       font-weight: 300;
@@ -840,6 +857,196 @@
     .colo-big span {
       color: var(--accent);
       opacity: 0.9;
+    }
+
+
+    /* --- PIEZAS --- */
+    .piezas-sec {
+      margin-top: 48px;
+      padding-top: 36px;
+      border-top: 1px solid var(--rule)
+    }
+    .piezas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule2);
+      border: 1px solid var(--rule2);
+      margin-top: 24px
+    }
+    .pieza-card {
+      background: var(--paper);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+    .pieza-type {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal2)
+    }
+    .pieza-name {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--ink)
+    }
+    .pieza-body {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.55
+    }
+
+    /* --- CTA --- */
+    #cta-block {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden
+    }
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap
+    }
+    .cta-headline {
+      font-size: clamp(20px, 3vw, 34px);
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: -.02em;
+      line-height: 1.15
+    }
+    .cta-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,.5);
+      margin-top: 10px;
+      max-width: 420px
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 15px 36px;
+      background: var(--teal2);
+      color: #fff;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity .2s
+    }
+    .cta-btn:hover { opacity: .82 }
+
+    /* --- ACTORES --- */
+    .actor-chain {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap
+    }
+    .chain-step {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--teal2);
+      border: 1px solid var(--rule2);
+      padding: 5px 14px
+    }
+    .chain-arrow {
+      font-size: 13px;
+      color: var(--muted)
+    }
+    .actores-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1px;
+      background: var(--rule2);
+      border: 1px solid var(--rule2);
+      margin-bottom: 0
+    }
+    .actor-card {
+      background: var(--paper);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column
+    }
+    .actor-card.dark {
+      background: var(--ink)
+    }
+    .actor-tag {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal2);
+      margin-bottom: 8px
+    }
+    .actor-card.dark .actor-tag { color: var(--teal) }
+    .actor-name {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -.02em
+    }
+    .actor-card.dark .actor-name { color: #eef4f7 }
+    .actor-cost {
+      display: inline-block;
+      font-size: 8.5px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      margin-bottom: 16px;
+      align-self: flex-start
+    }
+    .actor-cost.free  { color: var(--teal2);  border: 1px solid var(--teal2) }
+    .actor-cost.paid  { color: var(--accent);  border: 1px solid var(--accent) }
+    .actor-cost.curated { color: var(--muted); border: 1px solid var(--rule2) }
+    .actor-body {
+      font-size: 13.5px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 20px;
+      flex-grow: 1
+    }
+    .actor-card.dark .actor-body { color: #7aa8b8 }
+    .actor-give { margin-top: 16px }
+    .actor-give + .actor-give { margin-top: 12px }
+    .actor-give-label {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px
+    }
+    .actor-card.dark .actor-give-label { color: #4a7f8c }
+    .actor-item {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 2px 0;
+      display: flex;
+      gap: 8px
+    }
+    .actor-item::before { content: "→"; color: var(--accent); flex-shrink: 0 }
+    .actor-card.dark .actor-item { color: #7aa8b8 }
+    .facilitadoras-row {
+      border-top: 1px solid var(--rule);
+      padding: 28px 0 0;
+      margin-top: 32px
     }
 
     /* --- RESPONSIVE --- */
@@ -909,8 +1116,16 @@
       .team-row,
       .allies-grid,
       .scale-grid,
-      .colo-grid {
+      .colo-grid,
+      .piezas-grid,
+      .actores-grid {
         grid-template-columns: 1fr
+      }
+
+      .cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px
       }
 
       .fase-card.wide {
@@ -945,7 +1160,9 @@
 <body>
 
   <nav>
-    <span class="nav-logo">Laboratorio de Futuros</span>
+    <a class="nav-logo" href="#cover" aria-label="La Huella del Panadero — Laboratorio de Futuros">
+      <img src="assets/lahuella3.png" alt="La Huella del Panadero">
+    </a>
     <button class="nav-toggle" id="nav-toggle">
       <span></span>
       <span></span>
@@ -955,9 +1172,8 @@
       <a href="#concepto">Concepto</a>
       <a href="#formato">Formato</a>
       <a href="#roadmap">Roadmap</a>
-      <a href="#fases">Fases</a>
-      <a href="#speakers">Speakers</a>
-      <a href="#equipo">Equipo</a>
+      <a href="#roles">Roles</a>
+      <a href="#actores">Participar</a>
       <a href="#escala">Escala</a>
     </div>
   </nav>
@@ -971,30 +1187,24 @@
       <div class="container">
         <div class="cover-grid">
           <div>
-            <div class="cover-eyebrow">Propuesta de proyecto · Abril 2026</div>
-            <h1 class="cover-title">Laboratorio<br>de <span>Futuros</span></h1>
-            <p class="cover-sub">Un espacio de convergencia disciplinar donde arte, ciencias de la vida y tecnología se
-              tensionan para diseñar futuros posibles. Dos ediciones anuales temáticas. Comunidad, conocimiento y
-              proyectos con impacto real.</p>
+            <div class="cover-eyebrow">Laboratorio de Futuros</div>
+            <h1 class="cover-title" style="margin:0">
+              <img class="cover-logo" src="assets/lahuella3.png" alt="La Huella del Panadero — Laboratorio de Futuros">
+            </h1>
+            <p class="cover-sub">Una comunidad donde generalistas y especialistas se encuentran para diseñar futuros preferibles, con la certeza de que el aprendizaje en el proceso siempre produce una huella.</p>
             <div class="cover-fields">
               <span class="pill">Arte</span>
               <span class="pill">Ciencias de la vida</span>
               <span class="pill">Tecnología</span>
-              <span class="pill">Buenos Aires</span>
+              <span class="pill">Longevidad Ed.1</span>
             </div>
           </div>
           <div class="meta-block">
-            <div class="meta-row"><span class="meta-label">Inicio</span><span class="meta-val">Q1 2027</span></div>
-            <div class="meta-row"><span class="meta-label">Duración</span><span class="meta-val">2 años · 2
-                ediciones</span></div>
-            <div class="meta-row"><span class="meta-label">Temática Ed.1</span><span class="meta-val">Silver Economy
-                &amp; Lifestyle</span></div>
-            <div class="meta-row"><span class="meta-label">Formato</span><span class="meta-val">Bootcamp temático
-                intensivo</span></div>
-            <div class="meta-row"><span class="meta-label">Participantes</span><span class="meta-val">20–30 por
-                edición</span></div>
-            <div class="meta-row"><span class="meta-label">Coordinación</span><span class="meta-val">Luciana Perrone ·
-                Mariana Fiorillo</span></div>
+            <div class="meta-row"><span class="meta-label">Inicio</span><span class="meta-val">Q2 2027</span></div>
+            <div class="meta-row"><span class="meta-label">Ediciones</span><span class="meta-val">2 anuales temáticas</span></div>
+            <div class="meta-row"><span class="meta-label">Formato</span><span class="meta-val">Encuentro presencial · prototipo</span></div>
+            <div class="meta-row"><span class="meta-label">Participantes</span><span class="meta-val">Perfiles curados · cruce disciplinar</span></div>
+            <div class="meta-row"><span class="meta-label">Coordinación</span><span class="meta-val">Perrone · Fiorillo</span></div>
           </div>
         </div>
       </div>
@@ -1008,42 +1218,34 @@
           <h2 class="sec-title">El concepto</h2>
         </div>
         <div class="pull">
-          "Diseñamos no desde lo que creemos que el mundo es, sino desde la conciencia de que siempre estamos viendo
-          solo una parte."
+          "El futuro se diseña, no se espera."
+          <span style="display:block;font-size:.75em;opacity:.6;margin-top:8px;font-style:italic">También se experimenta: proceso abierto, documentación real, resultados compartidos.</span>
         </div>
         <div class="two-col">
           <div>
-            <div class="col-label">El contexto</div>
-            <p class="col-body">La inteligencia artificial, la crisis ecológica y la aceleración tecnológica están
-              disolviendo los bordes entre campos que históricamente operaron en paralelo. Las instituciones forman
-              especialistas. Las industrias optimizan dentro de sus marcos. El resultado es una <b>fragmentación del
-                pensamiento</b> en el momento histórico que más demanda lo contrario.</p>
+            <div class="col-label">Por qué ahora</div>
+            <p class="col-body">Y si no lo diseñamos, los problemas se acumulan hasta volverse demasiado complejos para abordarlos.</p>
           </div>
           <div>
-            <div class="col-label">La apuesta</div>
-            <p class="col-body">La capacidad de síntesis —moverse con rigor entre el laboratorio y el estudio, entre la
-              especulación y la evidencia— es hoy una de las competencias más escasas y más necesarias. Este proyecto
-              propone el espacio donde eso ocurre: de manera rigurosa, sostenida y profunda.</p>
+            <div class="col-label">El momento</div>
+            <p class="col-body">Estamos en el momento exacto para prototipar: antes de que los presupuestos cierren (oct–nov), con el segundo semestre como ventana real de acción. La conversación sobre <b>longevidad</b> —cómo vive una generación que ya no quiere ser definida por su edad sino por sus elecciones— está abierta y sin respuesta. Nosotras vamos a hacerla.</p>
           </div>
         </div>
         <div class="three-col" style="margin-top:32px">
           <div class="c-cell">
             <div class="c-label">Campo 01</div>
             <div class="c-name">El arte</div>
-            <p class="c-body">Un estado de expresión donde la percepción se expande, se vuelve más sensible, menos
-              automática. El lugar donde el ser humano amplía sus formas de interpretar y desear el mundo.</p>
+            <p class="c-body">Estado de expresión donde la percepción se expande y se vuelve menos automática. Donde habita la intuición.</p>
           </div>
           <div class="c-cell dark">
             <div class="c-label">Campo 02</div>
             <div class="c-name">La tecnología</div>
-            <p class="c-body">Mediación entre formas de vida y formas de percepción. El desafío: acceder, interpretar y
-              compartir percepciones radicalmente distintas a las propias.</p>
+            <p class="c-body">Mediación para acceder, interpretar y compartir diversas percepciones del mundo. El puente entre Umwelts.</p>
           </div>
           <div class="c-cell">
             <div class="c-label">Campo 03</div>
             <div class="c-name">Ciencias de la vida</div>
-            <p class="c-body">No estudiar la naturaleza como objeto, sino incorporar sus lógicas como marco de diseño.
-              Lo vivo como sistema de referencia.</p>
+            <p class="c-body">Marco sistémico para incorporar las lógicas de la naturaleza al diseño. Lo vivo como referencia.</p>
           </div>
         </div>
       </div>
@@ -1056,9 +1258,7 @@
           <span class="sec-num">02</span>
           <h2 class="sec-title">El formato</h2>
         </div>
-        <p class="col-body" style="max-width:580px;margin-bottom:36px">Cada edición del laboratorio se organiza
-          alrededor de una temática central. Una semana intensiva de trabajo colectivo estructurada como un cono de
-          futuros: del presente hacia lo posible, pasando por lo plausible, lo probable y lo preferible.</p>
+        <p class="col-body" style="max-width:580px;margin-bottom:36px">No es un evento. No es un curso. Es un encuentro de conversación curada, presencial, en espacios que frenan: bibliotecas, museos, lugares con silencio y presencia. Estructurado como un cono de futuros: del presente hacia lo posible, lo plausible, lo probable y lo <b>preferible</b>.</p>
 
         <div class="formato-layout">
           <!-- CONE SVG inspired by Dunne & Raby PPPP -->
@@ -1101,42 +1301,30 @@
           <div class="steps-side">
             <div class="step-row">
               <div>
-                <div class="step-n">Día 01</div>
-                <div class="step-name">Encuadre y sensibilización</div>
-                <div class="step-desc">Introducción a la temática. Presentación de speakers. Ejercicios de percepción
-                  ampliada.</div>
+                <div class="step-n">01</div>
+                <div class="step-name">Apertura</div>
+                <div class="step-desc">30 minutos con un speaker disparador que abre el campo de la pregunta.</div>
               </div>
             </div>
             <div class="step-row">
               <div>
-                <div class="step-n">Día 02</div>
-                <div class="step-name">Exploración de sistemas</div>
-                <div class="step-desc">Mapeo de fuerzas. Identificación de fricciones y oportunidades en el campo
-                  problemático.</div>
+                <div class="step-n">02</div>
+                <div class="step-name">Trabajo activo</div>
+                <div class="step-desc">Facilitación que no es "oratorio segmentado" — es pensamiento conjunto en movimiento.</div>
               </div>
             </div>
             <div class="step-row">
               <div>
-                <div class="step-n">Día 03</div>
-                <div class="step-name">Futuros posibles</div>
-                <div class="step-desc">Prospectiva. Construcción de escenarios. Ficción especulativa como herramienta de
-                  pensamiento.</div>
+                <div class="step-n">03</div>
+                <div class="step-name">Conversación curada</div>
+                <div class="step-desc">La gente invierte en esa curaduría: en las personas y en la pregunta que se llevan.</div>
               </div>
             </div>
             <div class="step-row">
               <div>
-                <div class="step-n">Día 04</div>
-                <div class="step-name">Prototipado de ideas</div>
-                <div class="step-desc">Desarrollo de conceptos con potencial de valor social. Cruce interdisciplinar
-                  intencional.</div>
-              </div>
-            </div>
-            <div class="step-row">
-              <div>
-                <div class="step-n">Día 05</div>
-                <div class="step-name">Cierre y pitch</div>
-                <div class="step-desc">Presentación pública de ideas generadas ante comunidad, mentores e invitados.
-                </div>
+                <div class="step-n">04</div>
+                <div class="step-name">Prototipo</div>
+                <div class="step-desc">Quienes se suman ahora dan forma a lo que esto va a ser.</div>
               </div>
             </div>
           </div>
@@ -1144,21 +1332,73 @@
 
         <div class="two-col" style="margin-top:40px">
           <div>
-            <div class="col-label">Edición 1 — Q2 2027</div>
-            <p class="col-body" style="font-size:13px;color:var(--ink);margin-bottom:7px;font-weight:300">Silver Economy
-              &amp; Lifestyle</p>
-            <p class="col-body">¿Cómo se diseña el estilo de vida de una generación que ya no quiere ser definida por su
-              edad sino por sus elecciones? La generación +50 como protagonista de la innovación, no como destinataria
-              de servicios.</p>
+            <div class="col-label">Temática Ed.1 — Longevidad</div>
+            <p class="col-body" style="font-size:13px;color:var(--ink);margin-bottom:7px;font-weight:300">¿Cómo diseña su vida una generación que ya no quiere ser definida por su edad sino por sus elecciones?</p>
+            <p class="col-body">Longevidad activa. Consumo con criterio. Identidad en movimiento. Una conversación que cruza arte, ciencias de la vida, tecnología y economía.</p>
+            <p class="col-body" style="font-style:italic;font-size:12px;margin-top:8px">La temática de la segunda edición se construye con la comunidad de la primera.</p>
           </div>
           <div>
-            <div class="col-label">Edición 2 — Q4 2027</div>
-            <p class="col-body" style="font-size:13px;color:var(--ink);margin-bottom:7px;font-weight:300">Temática a
-              definir</p>
-            <p class="col-body">La segunda edición incorpora aprendizajes de la primera. Su temática se definirá en
-              conjunto con la comunidad construida en Ed.1, speakers y aliados estratégicos.</p>
+            <div class="col-label">Cómo se valida</div>
+            <p class="col-body" style="font-size:13px;color:var(--ink);margin-bottom:7px;font-weight:300">La validación no es la descripción. Es la experiencia.</p>
+            <p class="col-body">Este espacio se valida con la calidad de la conversación, la diversidad de quienes están en la sala y el disfrute del proceso. No es contarlo — es verlo. Por eso estamos en fase prototipo.</p>
           </div>
         </div>
+
+        <div class="two-col" style="margin-top:40px">
+          <div>
+            <div class="col-label">Lo que se llevan</div>
+            <div class="step-row">
+              <div>
+                <div class="step-n">01</div>
+                <div class="step-name">Síntesis y conceptualización</div>
+                <div class="step-desc">Un mapa claro de la pregunta: dónde está el nudo, dónde están las fricciones.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-n">02</div>
+                <div class="step-name">Statements accionables</div>
+                <div class="step-desc">No conclusiones abstractas — caminos concretos, next steps, decisiones posibles.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-n">03</div>
+                <div class="step-name">Red y orientación</div>
+                <div class="step-desc">Saber con quién avanzar. El valor está en las personas que están en la sala.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="col-label">A quién está dirigido</div>
+            <p class="col-body" style="font-size:13px;color:var(--ink);margin-bottom:10px;font-weight:300">El valor está en el cruce de personas que normalmente no se juntarían.</p>
+            <div class="step-row">
+              <div>
+                <div class="step-name">Mecenas y fundaciones</div>
+                <div class="step-desc">Que entienden el apoyo al arte como posición, no como logo.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-name">Founders y líderes</div>
+                <div class="step-desc">Que quieren seguir siendo relevantes en la conversación de los futuros posibles.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-name">Artistas, diseñadores, tecnólogos</div>
+                <div class="step-desc">Con práctica especulativa o en intersección disciplinar.</div>
+              </div>
+            </div>
+            <div class="step-row">
+              <div>
+                <div class="step-name">Generación +50 activa</div>
+                <div class="step-desc">Con décadas de experiencia y apetito real por construir lo que viene.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1204,7 +1444,7 @@
               <tr>
                 <td class="rm-track">Bootcamp</td>
                 <td></td>
-                <td><span class="rmb star">Ed.1 ★ Silver Economy</span></td>
+                <td><span class="rmb star">Ed.1 ★ Longevidad</span></td>
                 <td></td>
                 <td><span class="rmb star">Ed.2 ★ Tem. abierta</span></td>
               </tr>
@@ -1244,7 +1484,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><span class="rmb blue">Publicación Ed.1–2</span></td>
+                <td><span class="rmb blue">Publicación Ed.1–2</span><br><span class="rmb soft">Documental Ed.1–2</span></td>
               </tr>
               <tr>
                 <td class="rm-track">Muestras</td>
@@ -1273,199 +1513,115 @@
       </div>
     </section>
 
-    <!-- FASES -->
-    <section id="fases">
-      <div class="container">
-        <div class="sec-header">
-          <span class="sec-num">03b</span>
-          <h2 class="sec-title">Desglose por fase</h2>
-        </div>
-        <div class="fases-grid">
-          <div class="fase-card">
-            <div class="fase-num">Fase 0</div>
-            <div class="fase-name">Fundación</div>
-            <div class="fase-meta">Q1 2027</div>
-            <p class="fase-desc">Construcción de los materiales fundacionales del proyecto: marco conceptual,
-              propuesta
-              de valor, identidad visual y canales de comunicación. Definición de la temática de la primera edición.
-              Armado del equipo coordinador y primeros contactos con el ecosistema de speakers y partners.</p>
-          </div>
-          <div class="fase-card">
-            <div class="fase-num">Fase 1</div>
-            <div class="fase-name">Difusión y convocatoria Ed.1</div>
-            <div class="fase-meta">Q2 2027 · Mes 1–2</div>
-            <p class="fase-desc">Dos meses dedicados exclusivamente a instalar el proyecto en la escena y sumar
-              participantes. <b>Mes 1:</b> Difusión y contenido editorial. <b>Mes 2:</b> Convocatoria abierta,
-              selección
-              y criterios de diversidad disciplinar.</p>
-          </div>
-          <div class="fase-card">
-            <div class="fase-num">Fase 2</div>
-            <div class="fase-name">Bootcamp Ed.1</div>
-            <div class="fase-meta">Q2 2027 · Semana 5</div>
-            <p class="fase-desc">Semana intensiva de trabajo colectivo. Cinco días con talleres de prospectiva,
-              charlas
-              de speakers, trabajo en grupos interdisciplinares y pitch final abierto a la comunidad.</p>
-          </div>
-          <div class="fase-card">
-            <div class="fase-num">Fase 3</div>
-            <div class="fase-name">Seguimiento Ed.1</div>
-            <div class="fase-meta">Q3 2027</div>
-            <p class="fase-desc">Acompañamiento de los proyectos generados durante el bootcamp. Construcción de red
-              entre participantes, speakers y potenciales implementadores. Inicio de documentación del proceso.</p>
-          </div>
-          <div class="fase-card">
-            <div class="fase-num">Fase 4</div>
-            <div class="fase-name">Difusión y convocatoria Ed.2</div>
-            <div class="fase-meta">Q4 2027 · Mes 1–2</div>
-            <p class="fase-desc">Segunda edición con nueva temática. El proceso de difusión incorpora los resultados y
-              aprendizajes de la primera edición como argumento central.</p>
-          </div>
-          <div class="fase-card">
-            <div class="fase-num">Fase 5</div>
-            <div class="fase-name">Bootcamp Ed.2</div>
-            <div class="fase-meta">Q4 2027 · Semana 5</div>
-            <p class="fase-desc">Segunda semana intensiva. El formato ha sido iterado a partir del feedback de la
-              primera
-              edición, incorporando mejoras metodológicas y mayor integración.</p>
-          </div>
-          <div class="fase-card wide">
-            <div class="fase-num">Fase 6</div>
-            <div class="fase-name">Jornadas de comunidad</div>
-            <div class="fase-meta">Q1–Q2 2028</div>
-            <p class="fase-desc">Serie de 6 jornadas mensuales orientadas a sostener el hábito de encuentro y los
-              vínculos. Charlas breves con invitados y espacio de networking para conectar proyectos con mentores e
-              implementadores. Acceso abierto a la comunidad del laboratorio.</p>
-          </div>
-          <div class="fase-card wide">
-            <div class="fase-num">Fase 7</div>
-            <div class="fase-name">Año 2: Publicaciones, muestras y aceleración</div>
-            <div class="fase-meta">Año 2028</div>
-            <p class="fase-desc">Producción de publicaciones que documentan el proceso. Organización de una muestra
-              pública de proyectos. Acompañamiento para desarrollo de proyectos con alto impacto social. Evaluación
-              del
-              modelo para definir el formato de escala futura.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SPEAKERS -->
-    <section id="speakers">
+    <!-- ROLES -->
+    <section id="roles">
       <div class="container">
         <div class="sec-header">
           <span class="sec-num">04</span>
-          <h2 class="sec-title">Speakers Ed.1</h2>
+          <h2 class="sec-title">Roles en el encuentro</h2>
         </div>
-        <p style="font-size:12px;font-weight:300;color:var(--muted);max-width:520px">Perfiles seleccionados por
-          capacidad de tensar la pregunta central desde disciplinas distintas.</p>
-        <div class="spk-grid">
-          <div class="spk">
-            <div class="spk-tag">Tecnología · futuro</div>
-            <div class="spk-name">Santiago Bilinkis</div>
-            <div class="spk-role">Tecnólogo · divulgador · emprendedor</div>
-            <p class="spk-why">Referente en futuro y longevidad. Alumni de Singularity. Alcance masivo en ciencia y
-              tecnología.</p>
+        <p class="col-body" style="max-width:620px;margin-bottom:8px">Cada persona llega con un perfil y asume un rol. El cruce de roles es lo que produce el pensamiento que no podría existir en una sola disciplina.</p>
+        <div class="fases-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="fase-card">
+            <div class="fase-num">Rol 01</div>
+            <div class="fase-name">El Arqueólogo</div>
+            <p class="fase-desc">Investiga capas de decisiones pasadas y señales de cambio.</p>
           </div>
-          <div class="spk">
-            <div class="spk-tag">Política digital · futuro</div>
-            <div class="spk-name">Santiago Siri</div>
-            <div class="spk-role">Emprendedor · futurista · activista</div>
-            <p class="spk-why">Pionero en tecnología cívica y blockchain. Perspectiva radical sobre futuros posibles y
-              democracia digital.</p>
+          <div class="fase-card">
+            <div class="fase-num">Rol 02</div>
+            <div class="fase-name">El Escaneador</div>
+            <p class="fase-desc">Mapea fuerzas, tendencias y fricciones del sistema.</p>
           </div>
-          <div class="spk">
-            <div class="spk-tag">Cultura · innovación</div>
-            <div class="spk-name">Mario Pergolini</div>
-            <div class="spk-role">Comunicador · emprendedor cultural</div>
-            <p class="spk-why">Creador de Vorterix. Encarna la reinvención profesional en la madurez y la construcción
-              de nuevas audiencias.</p>
+          <div class="fase-card">
+            <div class="fase-num">Rol 03</div>
+            <div class="fase-name">El Especulador</div>
+            <p class="fase-desc">Construye la narrativa provocadora y los futuros posibles.</p>
           </div>
-          <div class="spk">
-            <div class="spk-tag">Silver Economy · consumo</div>
-            <div class="spk-name">Guillermo Oliveto</div>
-            <div class="spk-role">Economista · CEO W &amp; Almatrends</div>
-            <p class="spk-why">El referente más citado sobre hábitos Gen Silver en Argentina. 40% del consumo global.
-            </p>
+          <div class="fase-card">
+            <div class="fase-num">Rol 04</div>
+            <div class="fase-name">El Maker</div>
+            <p class="fase-desc">Traduce ideas en objetos, prototipos o artefactos visibles.</p>
           </div>
-          <div class="spk">
-            <div class="spk-tag">Cine · arte · narrativa</div>
-            <div class="spk-name">Lucrecia Martel</div>
-            <div class="spk-role">Directora · artista visual · pensadora</div>
-            <p class="spk-why">Una de las cineastas latinoamericanas más influyentes. Su obra explora la percepción,
-              el
-              cuerpo y el tiempo desde una perspectiva radicalmente no convencional.</p>
+          <div class="fase-card">
+            <div class="fase-num">Rol 05</div>
+            <div class="fase-name">El Estratega</div>
+            <p class="fase-desc">Lidera el backcasting: del futuro deseado al plan concreto.</p>
           </div>
-          <div class="spk">
-            <div class="spk-tag">Arte · tecnología · MALBA</div>
-            <div class="spk-name">Silvia Rivas</div>
-            <div class="spk-role">Artista visual · pionera arte-tech</div>
-            <p class="spk-why">Pionera en video-instalación tecnológica. Muestra en MALBA 2025. Puente entre arte
-              contemporáneo e investigación.</p>
-          </div>
-          <div class="spk">
-            <div class="spk-tag">Longevidad · salud</div>
-            <div class="spk-name">Conrado Estol</div>
-            <div class="spk-role">Médico · fundador BREYNA</div>
-            <p class="spk-why">Especialista en longevidad y calidad de vida. Cómo vivir bien más años, no solo vivir
-              más.</p>
-          </div>
-          <div class="spk">
-            <div class="spk-tag">Innovación · CCK</div>
-            <div class="spk-name">Gino Tubaro</div>
-            <div class="spk-role">Inventor · maker · divulgador</div>
-            <p class="spk-why">Innovación accesible y tecnología con impacto. Presencia en CCK y Tecnópolis. Convoca
-              audiencias diversas.</p>
+          <div class="fase-card">
+            <div class="fase-num">Rol 06</div>
+            <div class="fase-name">El Maestro</div>
+            <p class="fase-desc">Procura que cada persona se lleve un aprendizaje real. No transmite — crea las condiciones para que el otro piense. La huella queda.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EQUIPO -->
-    <section id="equipo">
+
+    <!-- ACTORES -->
+    <section id="actores">
+      <div class="blob b1"></div>
       <div class="container">
         <div class="sec-header">
           <span class="sec-num">05</span>
-          <h2 class="sec-title">Equipo y aliados</h2>
+          <h2 class="sec-title">Cómo sumarte</h2>
         </div>
-        <div class="team-row">
-          <div class="team-card">
-            <div class="team-init">LP</div>
-            <div class="team-name">Luciana Perrone</div>
-            <div class="team-role">Dirección · facilitación · comunicación</div>
+        <div class="actores-grid">
+          <div class="actor-card">
+            <div class="actor-tag">Certificador · Validador</div>
+            <div class="actor-name">Sponsors</div>
+            <span class="actor-cost free">Sin costo económico</span>
+            <p class="actor-body">Tu nombre es lo que hace posible que esto exista. No te pedimos presupuesto — te pedimos que certifiques con tu presencia el estándar que representás. Es un lujo que te podés dar: asociarte a un proceso que no te va a hacer descender, y tiene todo el potencial de hacerte crecer.</p>
+            <div class="actor-give">
+              <div class="actor-give-label">Lo que pedimos</div>
+              <div class="actor-item">Aval institucional y presencia en materiales</div>
+              <div class="actor-item">Difusión desde tu red hacia la nuestra</div>
+              <div class="actor-item">Ser parte del mapa de certificación del proceso</div>
+            </div>
+            <div class="actor-give">
+              <div class="actor-give-label">Lo que recibís</div>
+              <div class="actor-item">Asociación a un experimento de prospectiva con impacto documentado</div>
+              <div class="actor-item">Acceso a la red de expertos curados y sus conclusiones</div>
+              <div class="actor-item">Visibilidad en papel, documental y materiales del proceso</div>
+            </div>
           </div>
-          <div class="team-card">
-            <div class="team-init">MF</div>
-            <div class="team-name">Mariana Fiorillo</div>
-            <div class="team-role">Dirección · facilitación · comunicación</div>
+          <div class="actor-card dark">
+            <div class="actor-tag">Mecenas · Financiador</div>
+            <div class="actor-name">Inversores</div>
+            <span class="actor-cost paid">Inversión económica</span>
+            <p class="actor-body">El escenario ya está trazado y los sponsors lo sostienen. Tu inversión no financia una idea — financia un proceso en marcha, con instituciones que ya pusieron su nombre. Sin la capa económica el encuentro no ocurre. Con ella, escala.</p>
+            <div class="actor-give">
+              <div class="actor-give-label">Lo que pedimos</div>
+              <div class="actor-item">Inversión acordada por edición o por ciclo anual</div>
+              <div class="actor-item">Presencia institucional en el encuentro</div>
+            </div>
+            <div class="actor-give">
+              <div class="actor-give-label">Lo que recibís</div>
+              <div class="actor-item">Co-branding con el ecosistema de sponsors ya construido</div>
+              <div class="actor-item">Acceso prioritario a conclusiones, paper y documental del proceso</div>
+              <div class="actor-item">Marca asociada a futuros preferibles, con presencia permanente</div>
+            </div>
+          </div>
+          <div class="actor-card">
+            <div class="actor-tag">Participante curado</div>
+            <div class="actor-name">Expertos</div>
+            <span class="actor-cost curated">Perfil curado</span>
+            <p class="actor-body">Expertos es como llamamos a quienes se sientan a trabajar. Cada persona trae su campo. Nosotras aseguramos que el cruce sea real. Lo que surge del proceso es de todos.</p>
+            <div class="actor-give">
+              <div class="actor-give-label">Lo que pedimos</div>
+              <div class="actor-item">Presencia y compromiso genuino durante el encuentro</div>
+              <div class="actor-item">Apertura disciplinar real</div>
+            </div>
+            <div class="actor-give">
+              <div class="actor-give-label">Lo que recibís</div>
+              <div class="actor-item">Una conversación que no existe en otro formato — ni evento, ni curso</div>
+              <div class="actor-item">Red de pares curados y cruce disciplinar intencionado</div>
+              <div class="actor-item">Las conclusiones son de todos: síntesis compartida, paper y documental</div>
+            </div>
           </div>
         </div>
-        <div class="col-label" style="margin-top:28px;margin-bottom:0">Aliados estratégicos</div>
-        <div class="allies-grid">
-          <div class="ally">
-            <div class="ally-name">Silver Economy Forum Latam</div>
-            <div class="ally-type">Promotor · comunidad silver · difusión</div>
-          </div>
-          <div class="ally">
-            <div class="ally-name">SingularityU Buenos Aires</div>
-            <div class="ally-type">Aliado estratégico · red · metodología</div>
-          </div>
-          <div class="ally">
-            <div class="ally-name">Artlab / MUTEK Buenos Aires</div>
-            <div class="ally-type">Arte digital · CCK · red internacional</div>
-          </div>
-          <div class="ally">
-            <div class="ally-name">Endeavor Argentina</div>
-            <div class="ally-type">Red de emprendedores · amplificación</div>
-          </div>
-          <div class="ally">
-            <div class="ally-name">UNTREF / UDESA / Di Tella</div>
-            <div class="ally-type">Certificación · comunidad académica</div>
-          </div>
-          <div class="ally">
-            <div class="ally-name">Fondo Nacional de las Artes</div>
-            <div class="ally-type">Financiamiento · legitimidad pública</div>
-          </div>
+        <div class="facilitadoras-row">
+          <div class="col-label">Quiénes llevamos el proceso</div>
+          <p class="col-body" style="max-width:600px">Luciana Perrone y Mariana Fiorillo curamos los perfiles, diseñamos la conversación y somos la metodología. La atracción y la curaduría son nuestras. El resultado es de todos.</p>
         </div>
       </div>
     </section>
@@ -1481,36 +1637,53 @@
           <div class="c-cell">
             <div class="c-label">Dimensión 01</div>
             <div class="c-name">Replicabilidad</div>
-            <p class="c-body">El bootcamp temático puede replicarse en otros contextos geográficos e institucionales.
-              Cada edición genera documentación metodológica que alimenta futuras réplicas.</p>
+            <p class="c-body">Formato transferible a otros contextos geográficos e institucionales.</p>
           </div>
           <div class="c-cell dark">
             <div class="c-label">Dimensión 02</div>
             <div class="c-name">Licenciamiento</div>
-            <p class="c-body">Sistema metodológico transferible que otras organizaciones pueden implementar bajo
-              licencia o con acompañamiento directo del equipo.</p>
+            <p class="c-body">Sistema metodológico que otras organizaciones pueden implementar bajo licencia.</p>
           </div>
           <div class="c-cell">
             <div class="c-label">Dimensión 03</div>
             <div class="c-name">Comunidad global</div>
-            <p class="c-body">La red de alumni construida edición a edición es un activo estratégico que trasciende el
-              evento y puede articularse como plataforma de conocimiento distribuido.</p>
+            <p class="c-body">Red de alumni como plataforma de conocimiento distribuido en LATAM.</p>
           </div>
         </div>
-        <div class="col-label" style="margin-top:32px;margin-bottom:0">Próximos pasos</div>
-        <div class="steps-list">
-          <div class="step-item"><span class="step-nn">01</span>Definir la temática de la primera edición y construir
-            el
-            brief que la comunica.</div>
-          <div class="step-item"><span class="step-nn">02</span>Identificar y confirmar el espacio físico para el
-            bootcamp piloto.</div>
-          <div class="step-item"><span class="step-nn">03</span>Iniciar los primeros contactos con speakers y aliados
-            estratégicos.</div>
-          <div class="step-item"><span class="step-nn">04</span>Lanzar identidad visual y canales de comunicación en
-            Q1
-            2027.</div>
-          <div class="step-item"><span class="step-nn">05</span>Cerrar acuerdos con mecenas e inversores antes de Q2
-            2027.</div>
+
+        <div class="piezas-sec">
+          <div class="col-label">Lo que produce cada edición</div>
+          <div class="piezas-grid">
+            <div class="pieza-card">
+              <div class="pieza-type">Pieza 01</div>
+              <div class="pieza-name">Editorial</div>
+              <p class="pieza-body">Paper de conclusiones con la síntesis del encuentro. Formato publicable, con rigor y criterio editorial. Documento de referencia del proceso.</p>
+            </div>
+            <div class="pieza-card">
+              <div class="pieza-type">Pieza 02</div>
+              <div class="pieza-name">Podcast</div>
+              <p class="pieza-body">Serie de conversaciones en audio con los participantes. Los cruces disciplinares en formato que se comparte y se vuelve a escuchar.</p>
+            </div>
+            <div class="pieza-card">
+              <div class="pieza-type">Pieza 03</div>
+              <div class="pieza-name">Documental</div>
+              <p class="pieza-body">Registro audiovisual del proceso y el encuentro. La huella real de lo que ocurrió en la sala.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta-block">
+      <div class="container">
+        <div class="cta-inner">
+          <div>
+            <div class="cta-headline">Conversemos<br>15 minutos.</div>
+            <p class="cta-sub">Si algo de esto resonó, agendá una llamada. Sin obligación — solo una conversación sobre si hay un lugar para vos en este proceso.</p>
+          </div>
+          <a class="cta-btn" href="https://calendar.app.google/sUiFZMnHk1n2M7Mb8" target="_blank" rel="noopener">Agendar →</a>
         </div>
       </div>
     </section>
@@ -1522,15 +1695,15 @@
       <div class="container">
         <div class="colo-grid">
           <div class="colo-meta">
+            <img class="colo-logo" src="assets/lahuella3.png" alt="La Huella del Panadero">
             Laboratorio de Futuros<br>
-            Propuesta provisional · Abril 2026<br><br>
-            Coordinación<br>
+            Un experimento · Ed.1 Q2 2027<br><br>
+            Facilitadoras<br>
             Luciana Perrone · Mariana Fiorillo<br><br>
             Arte · Ciencias de la vida · Tecnología<br>
             Buenos Aires · 2027–2028<br><br>
-            Para consultas e interés en participar<br>
-            como aliado, inversor o speaker,<br>
-            contactarse con el equipo coordinador.
+            Para sumarte como sponsor, mecenas<br>
+            o experto curado, escribinos.
           </div>
           <div class="colo-big">Futuros<br><del>posibles.</del> <span>preferibles.</span></div>
         </div>
