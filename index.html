@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio de Futuros</title>
+  <title>Experimento de Futuros</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
@@ -17,15 +17,17 @@
     }
 
     :root {
-      --ink: #1a2024;
-      --muted: #6b8a96;
-      --rule: #e3ecef;
-      --rule2: #ccdce2;
-      --accent: #5a8fc2;
-      --teal: #8ec4c0;
-      --teal2: #5f9fa0;
-      --paper: #ffffff;
-      --surface: #f4f8fa;
+      /* Cool grayscale palette with vibrant fluo accents */
+      --ink: #2F2E35;           /* Cool dark charcoal for texts */
+      --muted: #63626F;         /* Medium cool gray for subheaders */
+      --rule: #D7D6DB;          /* Light gray border */
+      --rule2: #BFBDC5;         /* Medium gray border */
+      --accent: #91909D;        /* Cool steel gray */
+      --teal: #BFBDC5;          /* Cool gray matching the palette */
+      --teal2: #63626F;         /* Darker gray matching the palette */
+      --paper: #FAFAFA;         /* Clean cool off-white paper background */
+      --surface: #EFEFF1;       /* Light gray surface panels */
+      --fluo: #ff5063;          /* Glowing neon hot coral highlight */
       --sans: 'DM Sans', system-ui, sans-serif;
       --nav-h: 52px;
     }
@@ -68,7 +70,7 @@
     .nav-logo img {
       height: 36px;
       width: auto;
-      display: block
+      display: block;
     }
 
     .nav-links {
@@ -115,7 +117,24 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: var(--accent)
+      background: var(--fluo)
+    }
+
+    .nav-links a.nav-cta {
+      background: var(--fluo);
+      color: #fff !important;
+      font-weight: 500;
+      text-shadow: none;
+      transition: background 0.2s, opacity 0.2s;
+    }
+
+    .nav-links a.nav-cta:hover {
+      background: #ff3a50;
+      color: #fff !important;
+    }
+
+    .nav-links a.nav-cta::after {
+      display: none !important;
     }
 
     .nav-toggle {
@@ -171,9 +190,12 @@
 
     /* --- COVER --- */
     #cover {
+      position: relative;
       padding: 72px 0 64px;
-      background: #fff
+      background: var(--paper);
+      overflow: hidden;
     }
+
 
     #cover .b1 {
       width: 480px;
@@ -227,7 +249,7 @@
       width: 100%;
       max-width: 460px;
       height: auto;
-      margin-bottom: 24px
+      margin-bottom: 24px;
     }
 
     .cover-sub {
@@ -256,8 +278,10 @@
     }
 
     .meta-block {
-      background: var(--surface);
-      border: 1px solid var(--rule)
+      background: #2F2E35;
+      border: 1px solid #3A3941;
+      border-radius: 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15)
     }
 
     .meta-row {
@@ -265,7 +289,15 @@
       justify-content: space-between;
       align-items: baseline;
       padding: 11px 16px;
-      border-bottom: 1px solid var(--rule)
+      border-bottom: 1px solid #3A3941
+    }
+
+    .meta-block .meta-label {
+      color: #A9A8B2
+    }
+
+    .meta-block .meta-val {
+      color: #FAFAFA
     }
 
     .meta-row:last-child {
@@ -344,44 +376,199 @@
 
     /* --- PULL QUOTE --- */
     .pull {
-      font-size: clamp(16px, 2.2vw, 22px);
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--ink);
-      padding: 32px 0;
+      font-size: clamp(34px, 5.5vw, 56px); /* Highly enlarged, bold, and outstanding! */
+      font-weight: 500;
+      line-height: 1.25;
+      padding: 40px 0;
       margin: 40px 0;
-      max-width: 680px;
-      letter-spacing: -.01em
+      max-width: 900px;
+      letter-spacing: -.025em;
+      color: var(--ink); /* Base color */
     }
 
-    /* --- THREE COL --- */
-    .three-col {
+    .pull .char {
+      color: var(--ink);
+      transition: color 0.22s ease-out; /* Smooth, luxurious color shift letter-by-letter */
+    }
+
+    .pull .char.active {
+      color: var(--fluo);
+    }
+
+
+    /* --- INTERACTIVE STICKY SCROLL CONCEPT --- */
+    #concepto {
+      overflow: visible;
+    }
+
+    .concept-scroll-trigger {
+      height: 220vh; /* Scroll track distance */
+      position: relative;
+      margin-top: 180px;
+    }
+
+    .concept-interactive-container {
+      position: sticky;
+      top: calc(50vh - 140px);
+      height: auto;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--rule2);
-      border: 1px solid var(--rule2)
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: start;
     }
 
-    .c-cell {
-      background: var(--paper);
-      padding: 22px 18px
+    .concept-left-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-left: 20px;
     }
 
-    .c-cell.dark {
-      background: var(--accent)
+    .concept-list-item {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      cursor: pointer;
+      opacity: 0.25;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      user-select: none;
     }
 
-    .c-cell.dark .c-label {
-      color: rgba(255, 255, 255, .4)
+    .concept-list-item.active {
+      opacity: 1;
+      transform: translateX(10px);
     }
 
-    .c-cell.dark .c-name {
-      color: rgba(255, 255, 255, .9)
+    .concept-list-num {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--fluo);
+      font-family: var(--sans);
     }
 
-    .c-cell.dark .c-body {
-      color: rgba(255, 255, 255, .5)
+    .concept-list-text {
+      font-size: clamp(20px, 3vw, 36px);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .concept-right-content {
+      background: transparent;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .concept-progress-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 0; /* Remove rounded corners! */
+      overflow: hidden;
+    }
+
+    .concept-progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--fluo);
+      transition: width 0.1s linear;
+    }
+
+    .concept-card-wrapper {
+      position: relative;
+      height: 280px; /* Fixed height for absolute positioned cross-fading layers */
+    }
+
+    .concept-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+    }
+
+    .concept-card.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .concept-card-image {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 0; /* Remove rounded corners! */
+      position: relative;
+      overflow: hidden;
+      border: none;
+    }
+
+    .concept-card-num {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      font-size: 36px;
+      font-weight: 300;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .concept-card-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .concept-interactive-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .concept-left-list {
+        position: relative;
+        top: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .concept-list-text {
+        font-size: 20px;
+      }
+      .concept-right-content {
+        position: relative;
+        top: 0;
+        padding: 0;
+      }
+      .concept-card-wrapper {
+        height: auto;
+        position: relative;
+      }
+      .concept-card {
+        position: relative;
+        height: auto;
+        display: none;
+      }
+      .concept-card.active {
+        display: flex;
+      }
+      .concept-card-image {
+        height: 200px;
+      }
     }
 
     .c-label {
@@ -510,7 +697,7 @@
     }
 
     table.rm thead.yr2 th {
-      background: #0e2a60;
+      background: #3A3941;
       color: rgba(255, 255, 255, .8);
       font-weight: 300;
       font-size: 9px;
@@ -548,13 +735,13 @@
     }
 
     .rmb.blue {
-      background: #e3f0f5;
-      color: var(--accent)
+      background: #EFEFF1;
+      color: #63626F
     }
 
     .rmb.teal {
-      background: #e6f2f1;
-      color: var(--teal2)
+      background: #D7D6DB;
+      color: #3A3941
     }
 
     .rmb.dark {
@@ -563,7 +750,7 @@
     }
 
     .rmb.star {
-      background: var(--teal2);
+      background: var(--fluo);
       color: #fff;
       font-weight: 400
     }
@@ -756,10 +943,14 @@
     .scale-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--rule2);
-      border: 1px solid var(--rule2);
+      gap: 48px;
+      background: transparent;
+      border: none;
       margin-top: 32px
+    }
+    .scale-grid .c-cell {
+      background: transparent;
+      padding: 16px 0
     }
 
     /* --- STEPS LIST --- */
@@ -832,15 +1023,15 @@
     }
 
     .colo-logo {
-      height: 80px;
+      height: 90px;
       width: auto;
       display: block;
       margin-bottom: 20px;
-      opacity: .9
+      opacity: .9;
     }
 
     .colo-big {
-      font-size: clamp(28px, 4.5vw, 52px);
+      font-size: clamp(30px, 8vw, 110px);
       font-weight: 300;
       letter-spacing: -.025em;
       color: var(--ink);
@@ -848,15 +1039,94 @@
       text-align: right;
     }
 
-    .colo-big del {
-      text-decoration: line-through;
-      opacity: 0.35;
-      margin-right: 8px;
+    /* --- SWAP WORD LOOP ANIMATION (Colophon) --- */
+    .swap-word-container {
+      display: inline-flex;
+      position: relative;
+      align-items: center;
+      justify-content: flex-end;
+      vertical-align: bottom;
+      height: 1.2em;
     }
 
-    .colo-big span {
-      color: var(--accent);
-      opacity: 0.9;
+    .word-placeholder {
+      visibility: hidden;
+      pointer-events: none;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .word-possible {
+      position: absolute;
+      right: 0;
+      color: var(--ink);
+      display: inline-block;
+      white-space: nowrap;
+      animation: possibleFade 6s infinite;
+    }
+
+    .word-possible::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 52%;
+      width: 0%;
+      height: 5px;
+      background: var(--ink);
+      animation: possibleStrike 6s infinite;
+    }
+
+    .word-preferable {
+      position: absolute;
+      right: 0;
+      color: var(--fluo);
+      display: inline-block;
+      white-space: nowrap;
+      animation: preferableFade 6s infinite;
+    }
+
+    @keyframes possibleFade {
+      0%, 45% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      50%, 95% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes possibleStrike {
+      0%, 15% {
+        width: 0%;
+      }
+      25%, 45% {
+        width: 100%;
+        opacity: 1;
+      }
+      46%, 100% {
+        width: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes preferableFade {
+      0%, 50% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      55%, 85% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      90%, 100% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
     }
 
 
@@ -869,14 +1139,14 @@
     .piezas-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--rule2);
-      border: 1px solid var(--rule2);
+      gap: 48px;
+      background: transparent;
+      border: none;
       margin-top: 24px
     }
     .pieza-card {
-      background: var(--paper);
-      padding: 24px;
+      background: transparent;
+      padding: 16px 0;
       display: flex;
       flex-direction: column;
       gap: 8px
@@ -930,7 +1200,7 @@
     .cta-btn {
       display: inline-block;
       padding: 15px 36px;
-      background: var(--teal2);
+      background: var(--fluo);
       color: #fff;
       font-family: var(--body);
       font-size: 13px;
@@ -965,13 +1235,184 @@
       font-size: 13px;
       color: var(--muted)
     }
-    .actores-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 1px;
+    /* --- HORIZONTAL ACCORDION FOR ACTORES --- */
+    .accordion-container {
+      display: flex;
+      width: 100%;
+      height: 520px;
       background: var(--rule2);
       border: 1px solid var(--rule2);
-      margin-bottom: 0
+      overflow: hidden;
+      margin-top: 32px;
+    }
+
+    .accordion-item {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      background: var(--paper);
+      overflow: hidden;
+      position: relative;
+      width: 64px; /* Collapsed state: EXACTLY the header width, hides inner content completely! */
+      flex-shrink: 0;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s;
+    }
+
+    .accordion-item.active {
+      width: calc(100% - 128px); /* Expanded state: occupies all remaining space cleanly! */
+      flex-grow: 1;
+    }
+
+    .accordion-item:not(:last-child) {
+      border-right: 1px solid var(--rule2);
+    }
+
+    /* Accordion Header / Vertical Tab */
+    .accordion-header {
+      width: 64px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 32px 0;
+      background: var(--surface); /* All collapsed headers have the exact same color! */
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+
+    .accordion-item.active .accordion-header {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .accordion-num {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .accordion-title-vertical {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+      margin-top: 10px;
+    }
+
+    /* Accordion Content */
+    .accordion-content {
+      flex-grow: 1;
+      padding: 44px 48px;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+      display: flex;
+      flex-direction: column;
+      min-width: 480px; /* Protect content from text-wrapping squish during slide animation */
+    }
+
+    .accordion-item.active .accordion-content {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.4s ease 0.25s, visibility 0.4s ease 0.25s; /* Smooth delay so content doesn't wrap during animation */
+    }
+
+    /* --- MOBILE VERTICAL ACCORDION STACK --- */
+    @media(max-width: 768px) {
+      .accordion-container {
+        flex-direction: column;
+        height: auto;
+        border: none;
+        background: transparent;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .accordion-item {
+        width: 100% !important;
+        height: auto;
+        flex-direction: column;
+        border: 1px solid var(--rule2);
+        border-radius: 12px;
+      }
+      .accordion-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--rule2);
+      }
+      .accordion-header {
+        width: 100%;
+        height: 60px;
+        padding: 0 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--surface);
+        border-bottom: 1px solid transparent;
+      }
+      .accordion-item.active .accordion-header {
+        background: rgba(0, 0, 0, 0.02);
+        border-bottom: 1px solid var(--rule2);
+      }
+      .accordion-num {
+        margin-bottom: 0;
+        font-size: 11px;
+      }
+      .accordion-title-vertical {
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin-top: 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .accordion-content {
+        padding: 24px 20px;
+        height: auto;
+        display: none;
+        opacity: 0;
+        min-width: 0;
+      }
+      .accordion-item.active .accordion-content {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        animation: slideDown 0.3s ease-out forwards;
+      }
+      .actor-gives-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Inner card elements adjustments */
+    .actor-card-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .actor-gives-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 16px;
     }
     .actor-card {
       background: var(--paper);
@@ -1010,7 +1451,7 @@
       align-self: flex-start
     }
     .actor-cost.free  { color: var(--teal2);  border: 1px solid var(--teal2) }
-    .actor-cost.paid  { color: var(--accent);  border: 1px solid var(--accent) }
+    .actor-cost.paid  { color: var(--fluo);  border: 1px solid var(--fluo) }
     .actor-cost.curated { color: var(--muted); border: 1px solid var(--rule2) }
     .actor-body {
       font-size: 13.5px;
@@ -1158,10 +1599,11 @@
 </head>
 
 <body>
+  <canvas id="header-dust-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; pointer-events: none;"></canvas>
 
   <nav>
-    <a class="nav-logo" href="#cover" aria-label="La Huella del Panadero — Laboratorio de Futuros">
-      <img src="assets/lahuella3.png" alt="La Huella del Panadero">
+    <a class="nav-logo" href="#cover" aria-label="La Huella del Panadero — Experimento de Futuros">
+      <img src="assets/lahuella-color.svg" alt="La Huella del Panadero">
     </a>
     <button class="nav-toggle" id="nav-toggle">
       <span></span>
@@ -1175,6 +1617,7 @@
       <a href="#roles">Roles</a>
       <a href="#actores">Participar</a>
       <a href="#escala">Escala</a>
+      <a href="https://calendar.app.google/sUiFZMnHk1n2M7Mb8" target="_blank" rel="noopener" class="nav-cta">Agendar 15 min</a>
     </div>
   </nav>
 
@@ -1187,9 +1630,9 @@
       <div class="container">
         <div class="cover-grid">
           <div>
-            <div class="cover-eyebrow">Laboratorio de Futuros</div>
+            <div class="cover-eyebrow">Experimento de Futuros</div>
             <h1 class="cover-title" style="margin:0">
-              <img class="cover-logo" src="assets/lahuella3.png" alt="La Huella del Panadero — Laboratorio de Futuros">
+              <img class="cover-logo" src="assets/lahuella-color.svg" alt="La Huella del Panadero — Experimento de Futuros">
             </h1>
             <p class="cover-sub">Una comunidad donde generalistas y especialistas se encuentran para diseñar futuros preferibles, con la certeza de que el aprendizaje en el proceso siempre produce una huella.</p>
             <div class="cover-fields">
@@ -1200,7 +1643,7 @@
             </div>
           </div>
           <div class="meta-block">
-            <div class="meta-row"><span class="meta-label">Inicio</span><span class="meta-val">Q2 2027</span></div>
+            <div class="meta-row"><span class="meta-label">Inicio</span><span class="meta-val" style="color: var(--fluo); font-weight: 500;">Q3 2026</span></div>
             <div class="meta-row"><span class="meta-label">Ediciones</span><span class="meta-val">2 anuales temáticas</span></div>
             <div class="meta-row"><span class="meta-label">Formato</span><span class="meta-val">Encuentro presencial · prototipo</span></div>
             <div class="meta-row"><span class="meta-label">Participantes</span><span class="meta-val">Perfiles curados · cruce disciplinar</span></div>
@@ -1213,13 +1656,12 @@
     <!-- CONCEPTO -->
     <section id="concepto">
       <div class="container">
+        <div class="pull">
+          "El futuro se diseña, se proyecta y experimenta en un proceso abierto, con documentación real, resultados compartidos."
+        </div>
         <div class="sec-header">
           <span class="sec-num">01</span>
           <h2 class="sec-title">El concepto</h2>
-        </div>
-        <div class="pull">
-          "El futuro se diseña, no se espera."
-          <span style="display:block;font-size:.75em;opacity:.6;margin-top:8px;font-style:italic">También se experimenta: proceso abierto, documentación real, resultados compartidos.</span>
         </div>
         <div class="two-col">
           <div>
@@ -1231,21 +1673,41 @@
             <p class="col-body">Estamos en el momento exacto para prototipar: antes de que los presupuestos cierren (oct–nov), con el segundo semestre como ventana real de acción. La conversación sobre <b>longevidad</b> —cómo vive una generación que ya no quiere ser definida por su edad sino por sus elecciones— está abierta y sin respuesta. Nosotras vamos a hacerla.</p>
           </div>
         </div>
-        <div class="three-col" style="margin-top:32px">
-          <div class="c-cell">
-            <div class="c-label">Campo 01</div>
-            <div class="c-name">El arte</div>
-            <p class="c-body">Estado de expresión donde la percepción se expande y se vuelve menos automática. Donde habita la intuición.</p>
-          </div>
-          <div class="c-cell dark">
-            <div class="c-label">Campo 02</div>
-            <div class="c-name">La tecnología</div>
-            <p class="c-body">Mediación para acceder, interpretar y compartir diversas percepciones del mundo. El puente entre Umwelts.</p>
-          </div>
-          <div class="c-cell">
-            <div class="c-label">Campo 03</div>
-            <div class="c-name">Ciencias de la vida</div>
-            <p class="c-body">Marco sistémico para incorporar las lógicas de la naturaleza al diseño. Lo vivo como referencia.</p>
+        <div class="concept-scroll-trigger">
+          <div class="concept-interactive-container">
+            <div class="concept-left-list">
+              <div class="concept-list-item active" data-index="0">
+                <span class="concept-list-num">01</span>
+                <span class="concept-list-text">El arte.</span>
+              </div>
+              <div class="concept-list-item" data-index="1">
+                <span class="concept-list-num">02</span>
+                <span class="concept-list-text">La tecnología.</span>
+              </div>
+              <div class="concept-list-item" data-index="2">
+                <span class="concept-list-num">03</span>
+                <span class="concept-list-text">Ciencias de la vida.</span>
+              </div>
+            </div>
+            <div class="concept-right-content">
+              <div class="concept-progress-container">
+                <div class="concept-progress-bar"></div>
+              </div>
+              <div class="concept-card-wrapper">
+                <div class="concept-card active" data-index="0">
+                  <div class="concept-card-image" style="background-image: url('assets/arte.svg');"></div>
+                  <p class="concept-card-desc">Estado de expresión donde la percepción se expande y se vuelve menos automática. Donde habita la intuición.</p>
+                </div>
+                <div class="concept-card" data-index="1">
+                  <div class="concept-card-image" style="background-image: url('assets/tecnologia.svg');"></div>
+                  <p class="concept-card-desc">Mediación para acceder, interpretar y compartir diversas percepciones del mundo. El puente entre Umwelts.</p>
+                </div>
+                <div class="concept-card" data-index="2">
+                  <div class="concept-card-image" style="background-image: url('assets/ciencias.svg');"></div>
+                  <p class="concept-card-desc">Marco sistémico para incorporar las lógicas de la naturaleza al diseño. Lo vivo como referencia.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1265,23 +1727,23 @@
           <div class="cone-wrap">
             <svg viewBox="0 0 540 380" xmlns="http://www.w3.org/2000/svg" fill="none">
               <!-- Possible — outermost, lightest -->
-              <polygon points="70,190 420,30 420,350" fill="#e0f2f1" opacity=".7" />
+              <polygon points="70,190 420,30 420,350" fill="#EFEFF1" opacity=".7" />
               <!-- Plausible -->
-              <polygon points="70,190 420,70 420,310" fill="#b2dfdb" opacity=".7" />
+              <polygon points="70,190 420,70 420,310" fill="#D7D6DB" opacity=".7" />
               <!-- Probable -->
-              <polygon points="70,190 420,105 420,275" fill="#80cbc4" opacity=".8" />
+              <polygon points="70,190 420,105 420,275" fill="#BFBDC5" opacity=".8" />
               <!-- Preferable — warm, contrasting -->
-              <polygon points="70,190 310,125 310,185" fill="var(--teal2)" opacity=".9" />
+              <polygon points="70,190 310,125 310,185" fill="var(--fluo)" opacity=".9" />
               <!-- Present dot -->
               <circle cx="70" cy="190" r="6" fill="var(--ink)" />
 
               <!-- Labels: Right side (Cone) -->
               <text x="430" y="36" font-family="DM Sans,system-ui,sans-serif" font-size="13" font-weight="500"
-                fill="var(--teal2)" letter-spacing=".05em" dominant-baseline="middle">POSIBLE</text>
+                fill="#A9A8B2" letter-spacing=".05em" dominant-baseline="middle">POSIBLE</text>
               <text x="430" y="78" font-family="DM Sans,system-ui,sans-serif" font-size="13" font-weight="500"
-                fill="#4db6ac" letter-spacing=".05em" dominant-baseline="middle">PLAUSIBLE</text>
+                fill="#63626F" letter-spacing=".05em" dominant-baseline="middle">PLAUSIBLE</text>
               <text x="430" y="112" font-family="DM Sans,system-ui,sans-serif" font-size="13" font-weight="500"
-                fill="#00897b" letter-spacing=".05em" dominant-baseline="middle">PROBABLE</text>
+                fill="#2F2E35" letter-spacing=".05em" dominant-baseline="middle">PROBABLE</text>
 
               <!-- Label: Inside Preferable -->
               <text x="220" y="166" font-family="DM Sans,system-ui,sans-serif" font-size="11" font-weight="500"
@@ -1565,59 +2027,96 @@
           <span class="sec-num">05</span>
           <h2 class="sec-title">Cómo sumarte</h2>
         </div>
-        <div class="actores-grid">
-          <div class="actor-card">
-            <div class="actor-tag">Certificador · Validador</div>
-            <div class="actor-name">Sponsors</div>
-            <span class="actor-cost free">Sin costo económico</span>
-            <p class="actor-body">Tu nombre es lo que hace posible que esto exista. No te pedimos presupuesto — te pedimos que certifiques con tu presencia el estándar que representás. Es un lujo que te podés dar: asociarte a un proceso que no te va a hacer descender, y tiene todo el potencial de hacerte crecer.</p>
-            <div class="actor-give">
-              <div class="actor-give-label">Lo que pedimos</div>
-              <div class="actor-item">Aval institucional y presencia en materiales</div>
-              <div class="actor-item">Difusión desde tu red hacia la nuestra</div>
-              <div class="actor-item">Ser parte del mapa de certificación del proceso</div>
+        <div class="accordion-container">
+          
+          <!-- Sponsors (Socio de marca/Aval) -->
+          <div class="accordion-item active" data-index="1">
+            <div class="accordion-header">
+              <span class="accordion-num">01</span>
+              <span class="accordion-title-vertical">Sponsors</span>
             </div>
-            <div class="actor-give">
-              <div class="actor-give-label">Lo que recibís</div>
-              <div class="actor-item">Asociación a un experimento de prospectiva con impacto documentado</div>
-              <div class="actor-item">Acceso a la red de expertos curados y sus conclusiones</div>
-              <div class="actor-item">Visibilidad en papel, documental y materiales del proceso</div>
-            </div>
-          </div>
-          <div class="actor-card dark">
-            <div class="actor-tag">Mecenas · Financiador</div>
-            <div class="actor-name">Inversores</div>
-            <span class="actor-cost paid">Inversión económica</span>
-            <p class="actor-body">El escenario ya está trazado y los sponsors lo sostienen. Tu inversión no financia una idea — financia un proceso en marcha, con instituciones que ya pusieron su nombre. Sin la capa económica el encuentro no ocurre. Con ella, escala.</p>
-            <div class="actor-give">
-              <div class="actor-give-label">Lo que pedimos</div>
-              <div class="actor-item">Inversión acordada por edición o por ciclo anual</div>
-              <div class="actor-item">Presencia institucional en el encuentro</div>
-            </div>
-            <div class="actor-give">
-              <div class="actor-give-label">Lo que recibís</div>
-              <div class="actor-item">Co-branding con el ecosistema de sponsors ya construido</div>
-              <div class="actor-item">Acceso prioritario a conclusiones, paper y documental del proceso</div>
-              <div class="actor-item">Marca asociada a futuros preferibles, con presencia permanente</div>
+            <div class="accordion-content">
+              <div class="actor-card-inner">
+                <div class="actor-tag">Certificador · Validador</div>
+                <h3 class="actor-name">Sponsors</h3>
+                <span class="actor-cost free">Sin costo económico</span>
+                <p class="actor-body">Tu nombre es lo que hace posible que esto exista. No te pedimos presupuesto — te pedimos que certifiques con tu presencia el estándar que representás. Es un lujo que te podés dar: asociarte a un proceso que no te va a hacer descender, y tiene todo el potencial de hacerte crecer.</p>
+                <div class="actor-gives-container">
+                  <div class="actor-give">
+                    <div class="actor-give-label">Lo que pedimos</div>
+                    <div class="actor-item">Aval institucional y presencia en materiales</div>
+                    <div class="actor-item">Difusión desde tu red hacia la nuestra</div>
+                    <div class="actor-item">Ser parte del mapa de certificación del proceso</div>
+                  </div>
+                  <div class="actor-give">
+                    <div class="actor-give-label">Lo que recibís</div>
+                    <div class="actor-item">Asociación a un experimento de prospectiva con impacto documentado</div>
+                    <div class="actor-item">Acceso a la red de expertos curados y sus conclusiones</div>
+                    <div class="actor-item">Visibilidad en papel, documental y materiales del proceso</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="actor-card">
-            <div class="actor-tag">Participante curado</div>
-            <div class="actor-name">Expertos</div>
-            <span class="actor-cost curated">Perfil curado</span>
-            <p class="actor-body">Expertos es como llamamos a quienes se sientan a trabajar. Cada persona trae su campo. Nosotras aseguramos que el cruce sea real. Lo que surge del proceso es de todos.</p>
-            <div class="actor-give">
-              <div class="actor-give-label">Lo que pedimos</div>
-              <div class="actor-item">Presencia y compromiso genuino durante el encuentro</div>
-              <div class="actor-item">Apertura disciplinar real</div>
+
+          <!-- Inversores (Financiación/Mecenas) -->
+          <div class="accordion-item" data-index="2">
+            <div class="accordion-header">
+              <span class="accordion-num">02</span>
+              <span class="accordion-title-vertical">Inversores</span>
             </div>
-            <div class="actor-give">
-              <div class="actor-give-label">Lo que recibís</div>
-              <div class="actor-item">Una conversación que no existe en otro formato — ni evento, ni curso</div>
-              <div class="actor-item">Red de pares curados y cruce disciplinar intencionado</div>
-              <div class="actor-item">Las conclusiones son de todos: síntesis compartida, paper y documental</div>
+            <div class="accordion-content">
+              <div class="actor-card-inner">
+                <div class="actor-tag">Mecenas · Financiador</div>
+                <h3 class="actor-name">Inversores</h3>
+                <span class="actor-cost paid">Inversión económica</span>
+                <p class="actor-body">El escenario ya está trazado y los sponsors lo sostienen. Tu inversión no financia una idea — financia un proceso en marcha, con instituciones que ya pusieron su nombre. Sin la capa económica el encuentro no ocurre. Con ella, escala.</p>
+                <div class="actor-gives-container">
+                  <div class="actor-give">
+                    <div class="actor-give-label">Lo que pedimos</div>
+                    <div class="actor-item">Inversión acordada por edición o por ciclo anual</div>
+                    <div class="actor-item">Presencia institucional en el encuentro</div>
+                  </div>
+                  <div class="actor-give">
+                    <div class="actor-give-label">Lo que recibís</div>
+                    <div class="actor-item">Co-branding con el ecosistema de sponsors ya construido</div>
+                    <div class="actor-item">Acceso prioritario a conclusiones, paper y documental del proceso</div>
+                    <div class="actor-item">Marca asociada a futuros preferibles, con presencia permanente</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Expertos (Participantes/Expertos) -->
+          <div class="accordion-item" data-index="3">
+            <div class="accordion-header">
+              <span class="accordion-num">03</span>
+              <span class="accordion-title-vertical">Expertos</span>
+            </div>
+            <div class="accordion-content">
+              <div class="actor-card-inner">
+                <div class="actor-tag">Participante curado</div>
+                <h3 class="actor-name">Expertos</h3>
+                <span class="actor-cost curated">Perfil curado</span>
+                <p class="actor-body">Expertos es como llamamos a quienes se sientan a trabajar. Cada persona trae su campo. Nosotras aseguramos que el cruce sea real. Lo que surge del proceso es de todos.</p>
+                <div class="actor-gives-container">
+                  <div class="actor-give">
+                    <div class="actor-give-label">Lo que pedimos</div>
+                    <div class="actor-item">Presencia y compromiso genuino durante el encuentro</div>
+                    <div class="actor-item">Apertura disciplinar real</div>
+                  </div>
+                  <div class="actor-give">
+                    <div class="actor-give-label">Lo que recibís</div>
+                    <div class="actor-item">Una conversación que no existe en otro formato — ni evento, ni curso</div>
+                    <div class="actor-item">Red de pares curados y cruce disciplinar intencionado</div>
+                    <div class="actor-item">Las conclusiones son de todos: síntesis compartida, paper y documental</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="facilitadoras-row">
           <div class="col-label">Quiénes llevamos el proceso</div>
@@ -1639,7 +2138,7 @@
             <div class="c-name">Replicabilidad</div>
             <p class="c-body">Formato transferible a otros contextos geográficos e institucionales.</p>
           </div>
-          <div class="c-cell dark">
+          <div class="c-cell">
             <div class="c-label">Dimensión 02</div>
             <div class="c-name">Licenciamiento</div>
             <p class="c-body">Sistema metodológico que otras organizaciones pueden implementar bajo licencia.</p>
@@ -1695,17 +2194,15 @@
       <div class="container">
         <div class="colo-grid">
           <div class="colo-meta">
-            <img class="colo-logo" src="assets/lahuella3.png" alt="La Huella del Panadero">
-            Laboratorio de Futuros<br>
-            Un experimento · Ed.1 Q2 2027<br><br>
+            <img class="colo-logo" src="assets/lahuella-color.svg" alt="La Huella del Panadero">
+            Experimento de Futuros<br>
+            Un experimento · Ed.1 Q3 2026<br><br>
             Facilitadoras<br>
             Luciana Perrone · Mariana Fiorillo<br><br>
             Arte · Ciencias de la vida · Tecnología<br>
-            Buenos Aires · 2027–2028<br><br>
-            Para sumarte como sponsor, mecenas<br>
-            o experto curado, escribinos.
+            Buenos Aires · 2026–2027
           </div>
-          <div class="colo-big">Futuros<br><del>posibles.</del> <span>preferibles.</span></div>
+          <div class="colo-big">Futuros<br><span class="swap-word-container"><span class="word-placeholder">preferibles.</span><span class="word-possible">posibles.</span><span class="word-preferable">preferibles.</span></span></div>
         </div>
       </div>
     </section>
@@ -1761,6 +2258,7 @@
     // Manual click priority and menu closing
     links.forEach(link => {
       link.addEventListener('click', (e) => {
+        if (link.classList.contains('nav-cta')) return;
         links.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
@@ -1769,6 +2267,292 @@
         navLinksContainer.classList.remove('open');
       });
     });
+  </script>
+
+  <!-- INTERACTIVE DUST CANVASES AND SCROLL PAINTING SCRIPTS -->
+  <script>
+    // 1. DUST CLOUD MOUSE TRAIL (Baker's flour & charcoal dust aesthetic)
+    (function() {
+      const canvas = document.getElementById('header-dust-canvas');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+
+      let particles = [];
+      const maxParticles = 450; // Cap to ensure flawless performance
+      
+      // Color palette: shades of slate, ash, and flour gray (very fine dust aesthetic)
+      const colors = [
+        'rgba(40, 52, 60, ',    // Charcoal ash (dark gray)
+        'rgba(75, 90, 100, ',   // Slate gray
+        'rgba(110, 125, 135, ', // Medium gray
+        'rgba(160, 175, 185, ', // Light gray
+        'rgba(210, 222, 228, '  // Very pale gray (flour dust)
+      ];
+
+      let mouse = {
+        x: null,
+        y: null,
+        lastX: null,
+        lastY: null,
+        vx: 0,
+        vy: 0,
+        active: false
+      };
+
+      class DustParticle {
+        constructor(x, y, vx, vy) {
+          this.x = x;
+          this.y = y;
+          
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 0.2 + Math.random() * 0.9;
+          
+          // Velocity is a blend of mouse momentum and custom drift
+          this.vx = (vx * 0.08) + Math.cos(angle) * (speed * 1.5);
+          this.vy = (vy * 0.08) - (0.1 + Math.random() * 0.6); // Subtle upward suspension lift
+          
+          this.size = 0.4 + Math.random() * 1.0; // Microscopic, ultra-fine dust grains (removes confetti feel)
+          this.alpha = 1;
+          this.decay = 0.004 + Math.random() * 0.008; // Slower elegant fade out for volumetric feel
+          this.colorBase = colors[Math.floor(Math.random() * colors.length)];
+          
+          // Organic drift parameters
+          this.noiseSeedX = Math.random() * 100;
+          this.noiseSeedY = Math.random() * 100;
+          this.noiseSpeed = 0.015 + Math.random() * 0.02;
+        }
+
+        update() {
+          this.vx *= 0.98;
+          this.vy *= 0.98;
+
+          this.x += this.vx + Math.sin(this.noiseSeedX) * 0.18;
+          this.y += this.vy + Math.cos(this.noiseSeedY) * 0.10;
+
+          this.noiseSeedX += this.noiseSpeed;
+          this.noiseSeedY += this.noiseSpeed;
+
+          this.alpha -= this.decay;
+        }
+
+        draw() {
+          ctx.fillStyle = this.colorBase + this.alpha + ')';
+          ctx.fillRect(this.x, this.y, this.size, this.size);
+        }
+      }
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        if (mouse.lastX !== null) {
+          mouse.vx = x - mouse.lastX;
+          mouse.vy = y - mouse.lastY;
+        }
+        
+        mouse.x = x;
+        mouse.y = y;
+        mouse.lastX = x;
+        mouse.lastY = y;
+        mouse.active = true;
+
+        const speed = Math.sqrt(mouse.vx * mouse.vx + mouse.vy * mouse.vy);
+        const spawnCount = Math.min(Math.floor(speed * 0.75) + 3, 20); // Spawns more particles for a denser cloud
+        
+        for (let i = 0; i < spawnCount; i++) {
+          if (particles.length < maxParticles) {
+            const offsetX = (Math.random() - 0.5) * 45; // Wider spread for a larger, voluminous cloud
+            const offsetY = (Math.random() - 0.5) * 45;
+            particles.push(new DustParticle(x + offsetX, y + offsetY, mouse.vx, mouse.vy));
+          }
+        }
+      });
+
+      document.addEventListener('mouseleave', () => {
+        mouse.active = false;
+        mouse.lastX = null;
+        mouse.lastY = null;
+      });
+
+      function tick() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Subtle ambient drifting grains when idle
+        if (Math.random() < 0.12 && particles.length < maxParticles) {
+          const rx = Math.random() * width;
+          const ry = height - 10 - Math.random() * 40;
+          particles.push(new DustParticle(rx, ry, 0, -0.4));
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.update();
+          if (p.alpha <= 0) {
+            particles.splice(i, 1);
+          } else {
+            p.draw();
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      tick();
+    })();
+
+    // 2. SCROLL-LINKED TEXT PAINT EFFECT FOR PULL QUOTE (Letter-by-Letter Sequential Reveal)
+    (function() {
+      const pullText = document.querySelector('.pull');
+      if (!pullText) return;
+
+      const originalText = pullText.textContent.trim();
+      pullText.innerHTML = ''; // Clear original text block to build spans
+
+      const chars = [];
+      for (let i = 0; i < originalText.length; i++) {
+        const charSpan = document.createElement('span');
+        charSpan.className = 'char';
+        
+        if (originalText[i] === ' ') {
+          charSpan.innerHTML = ' '; // Standard breaking space to allow natural multiline wrapping
+        } else {
+          charSpan.textContent = originalText[i];
+        }
+        
+        pullText.appendChild(charSpan);
+        chars.push(charSpan);
+      }
+
+      function handleScroll() {
+        const rect = pullText.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        const totalRange = windowHeight + rect.height;
+        const currentPos = windowHeight - rect.top;
+        
+        let progress = currentPos / totalRange;
+        progress = Math.max(0, Math.min(1, progress));
+        
+        // Map progress to start/end in the middle 60% of viewport
+        let animatedProgress = (progress - 0.25) / 0.45; 
+        animatedProgress = Math.max(0, Math.min(1, animatedProgress));
+
+        const activeCharCount = Math.floor(animatedProgress * chars.length);
+        
+        for (let i = 0; i < chars.length; i++) {
+          if (i < activeCharCount) {
+            chars[i].classList.add('active');
+          } else {
+            chars[i].classList.remove('active');
+          }
+        }
+      }
+
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleScroll);
+      handleScroll();
+    })();
+
+    // 3. HORIZONTAL/VERTICAL ACCORDION FOR "CÓMO SUMARTE"
+    (function() {
+      const items = document.querySelectorAll('.accordion-item');
+      items.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        header.addEventListener('click', () => {
+          if (item.classList.contains('active')) return;
+          
+          document.querySelector('.accordion-item.active')?.classList.remove('active');
+          item.classList.add('active');
+        });
+      });
+    })();
+
+    // 4. INTERACTIVE STICKY SCROLL CONTROLLER FOR CONCEPTO
+    (function() {
+      const trigger = document.querySelector('.concept-scroll-trigger');
+      if (!trigger) return;
+
+      const items = document.querySelectorAll('.concept-list-item');
+      const cards = document.querySelectorAll('.concept-card');
+      const progressBar = document.querySelector('.concept-progress-bar');
+
+      function handleConceptScroll() {
+        const rect = trigger.getBoundingClientRect();
+        const container = document.querySelector('.concept-interactive-container');
+        const containerHeight = container ? container.offsetHeight : 280;
+        const pinOffset = (window.innerHeight - containerHeight) / 2; // Dynamically centered in viewport
+        const scrollRange = rect.height - window.innerHeight + pinOffset;
+        const scrolled = pinOffset - rect.top;
+        
+        let progress = scrolled / scrollRange;
+        progress = Math.max(0, Math.min(1, progress));
+
+        // Smoothly update the overall horizontal progress bar
+        if (progressBar) {
+          progressBar.style.width = (progress * 100) + '%';
+        }
+
+        // Segment progress into 3 parts (one for each card)
+        const activeIndex = Math.min(2, Math.floor(progress * 3));
+
+        items.forEach((item, idx) => {
+          if (idx === activeIndex) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        cards.forEach((card, idx) => {
+          if (idx === activeIndex) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+      }
+
+      // Add click handler to list items to smooth scroll to their section midpoint
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          const idx = parseInt(item.getAttribute('data-index'));
+          const rect = trigger.getBoundingClientRect();
+          const container = document.querySelector('.concept-interactive-container');
+          const containerHeight = container ? container.offsetHeight : 280;
+          const pinOffset = (window.innerHeight - containerHeight) / 2; // Dynamically centered in viewport
+          const scrollRange = rect.height - window.innerHeight + pinOffset;
+          
+          // Target progress is the midpoint of the active card segment
+          const targetProgress = (idx + 0.5) / 3;
+          const targetScrollY = window.pageYOffset + rect.top - pinOffset + (targetProgress * scrollRange);
+          
+          window.scrollTo({
+            top: targetScrollY,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      window.addEventListener('scroll', handleConceptScroll);
+      window.addEventListener('resize', handleConceptScroll);
+      handleConceptScroll(); // Initial run to set active state
+    })();
   </script>
 </body>
 
