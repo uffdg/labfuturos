@@ -451,7 +451,7 @@
       font-weight: 400;
       color: var(--ink);
       letter-spacing: -0.02em;
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .concept-right-content {
@@ -1340,7 +1340,7 @@
         height: auto;
         flex-direction: column;
         border: 1px solid var(--rule2);
-        border-radius: 12px;
+        border-radius: 0;
       }
       .accordion-item:not(:last-child) {
         border-right: none;
@@ -1593,6 +1593,57 @@
       .cone-wrap {
         max-width: 340px;
         margin: 0 auto
+      }
+
+      /* meta-block below cover text on mobile */
+      .meta-block {
+        margin-top: 32px
+      }
+
+      /* pull quote smaller on mobile */
+      .pull {
+        font-size: clamp(14px, 4.5vw, 20px);
+        padding: 24px 0;
+        margin: 24px 0
+      }
+
+      /* disable sticky scroll concept on mobile — show all cards stacked */
+      .concept-scroll-trigger {
+        height: auto;
+        margin-top: 32px
+      }
+
+      .concept-interactive-container {
+        position: static;
+        top: auto
+      }
+
+      .concept-card-wrapper {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 32px
+      }
+
+      .concept-card {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: flex
+      }
+
+      .concept-card-image {
+        height: 160px
+      }
+
+      .concept-list-item {
+        opacity: 1;
+        transform: none
+      }
+
+      .concept-list-text {
+        font-size: clamp(16px, 5vw, 24px)
       }
     }
   </style>
